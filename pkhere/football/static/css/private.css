@@ -1,0 +1,104 @@
+/* common css */
+.cRed, .cRed:hover{color:#f00 !important;}
+.cYellow, .cYellow:hover{color:#F1B634 !important;}
+.cWhite, .cWhite:hover{color:#fff !important;}
+.cCCC, .cCCC:hover{color:#ccc !important;}
+
+.f18{font-size:18px !important;}
+
+a:hover,a:active{
+    text-decoration: none;
+    blr:expression(this.onFocus=this.blur());
+}
+a:focus {
+    outline: none;
+}
+.tableHover tr:hover td{background:#efefef !important;}
+
+/* bootstrap css reset */
+.panel-package-1{
+    border:1px solid #82AF6F;
+}
+.panel-package-1 .panel-footer .btn{
+    background:#82AF6F;
+    color:#fff;
+}
+.panel-package-1 > .panel-heading{
+    background:#82AF6F;
+    color:#fff;
+}
+.panel-package-2{
+    border:1px solid #FFC657;
+}
+.panel-package-2 .panel-footer .btn{
+    background:#FFC657;
+    color:#fff;
+}
+.panel-package-2 > .panel-heading{
+    background:#FFC657;
+    color:#fff;
+}
+.panel-package-3{
+    border:1px solid #D15B47;
+}
+.panel-package-3 .panel-footer .btn{
+    background:#D15B47;
+    color:#fff;
+}
+.panel-package-3 > .panel-heading{
+    background:#D15B47;
+    color:#fff;
+}
+
+table > thead > tr.info > th,table > tbody > tr.info > td{
+    background: #D9EDF7;
+    border-bottom:2px solid #BCE8F1;
+}
+
+/*  */
+.fav_loading{
+    display: inline-block;
+    width:16px;
+    height: 16px;
+}
+
+.regiLink .btn{
+    margin-top: 8px;
+    margin-right: 10px;
+}
+
+.icons-coin16{
+    display:inline-block;
+    width:16px;
+    height: 16px;
+    background: url('../images/coins.png') 0 0 no-repeat;
+    vertical-align: middle;
+}
+.priceImg{
+    border:2px #ccc solid;
+}
+
+
+.weiboCon{max-width:900px; padding:20px; margin:0 auto; background:#fafafa; border:1px #ddd solid; color:#666;}
+.weiboCon .media{padding:15px; border-bottom: 1px #ddd solid;}
+.weiboCon .weiboConImg{cursor:pointer;}
+.weiboCon .media:last-child{border-bottom: 0;}
+.weiboCon .media-heading{font-size: 16px;}
+.weiboCon .media-body small{color:#999;}
+.weiboCon .pull-left img{ border-radius: 50%;}
+
+.paymentImg{
+    margin-left: 8px;
+    border:1px #ddd solid;
+    padding:3px;
+    border-radius: 5px;
+    width:130px;
+}
+
+
+/*footer*/
+footer{
+    font-size:12px;
+    color:#999;
+}
+
