@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="Refresh" content="6" />
+        <meta http-equiv="Refresh" content="30" />
         <title>比分直播 - PK足球 - 掌握全球足球比赛动态</title>
         <link rel="shortcut icon" href="/static/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=9">
@@ -76,8 +76,9 @@
             <table class="table table-bordered table-responsive tableHover">
                 <thead>
                     <tr class="info">
+                    <th>赛事</th>
                     <th class="text-center"><img src="/static/images/icon_clock.png" style="vertical-align:middle;width:16px;" alt="时间" title="时间" /></th>
-                    <th>主队 v 客队 （亚盘初盘：让球 / 大小球）</th>
+                    <th>主队 v 客队 （实时欧赔）</th>
                     <th class="text-center"><img src="/static/images/icon_goal.png" style="vertical-align:middle;width:16px;" alt="进球" title="进球" /></th>
 
                     </tr>
@@ -85,9 +86,11 @@
                 <tbody>
                     {% for i,j in matchInfo.items%}
                     <tr>
-                        <td class="text-center"><font color='red'>{{ j.time1 }}:{{ j.time2 }}’</font></td>
+                        <td><a href="#">{{ j.matchCategory }}</a></td>
+                        <td class="text-center"><font color='red'>{{ j.time1 }}’</font></td>
                         <td class="font12">
                             {{ j.team1 }} v {{ j.team2 }}
+                            {{ j.oupei }}
                         </td>
                         <td class="text-center">
                             
@@ -119,3 +122,4 @@
         </div>
     </body>
 </html>
+

@@ -1,30 +1,33 @@
 #-*- coding: UTF-8 -*-
 import urllib2
 import urllib
+import time
 import cookielib
+import re
+import StringIO
+import gzip
 from bs4 import BeautifulSoup
-import socket
 
 MATCH_CNT = 0
 MATCH_INFO = {}
+OLD_MATCH_INFO ={}
+PREFIX_PATH = "https://mobile.28365365.com/sport"
 class Sprider(object):
     _instance = None
     def __init__(self):
         self.headers  = {
-                        'Accept':'application/x-ms-application, image/jpeg, application/xaml+xml, image/gif, image/pjpeg, application/x-ms-xbap, */*',
-                        #S'Accept-Encoding':'gzip, deflate',
-                        'Accept-Language':'zh-CN',
-                        'Connection': 'Keep-Alive',
-                        #'Cookie': 'aps03=lng=2&tzi=27&ct=42&cst=132&cg=0; session=processform=0; lng=2; pstk=0E49F90691A84947A853A8106B32ED3F000003',
-                        'Host': 'mobile.28365365.com',
-                        #'Referer': 'https://mobile.28365365.com/sport/default.aspx?ID=200%3a0&key=&ip=1&clvl=&lvl=&t=&bsd=',
-                        'User-Agent': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)',
-        }
-        self.postData = {'Sport': 1,
-                         'key': 1,
-                         'L': 2,
-                         'ip': 1,
-                         'accesskey':'1',
+                        'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                        #'Accept-Encoding':'gzip, deflate',
+                        'Accept-Language':'zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3',
+                        #'Connection': 'Keep-Alive',
+                        'Host': 'www.28365365.com',
+                        'Content-Type':'text/html; charset=utf-8',
+                        #'Referer': 'http://www.28365365.com/lite/',
+                        'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:30.0) Gecko/20100101 Firefox/30.0',
+                        'Cookie':'aps03=tzi=27&oty=2&bst=1&hd=Y&lng=10&cf=E&ct=42&cst=132&v=1&cg=0&ltwo=False; rmbs=3; usdi=uqid=BC192014%2D5EE0%2D47AF%2D8404%2D5C3EE5C0B53B',
+
+                        }
+        self.postData = {
                         }
         return
 
@@ -43,10 +46,8 @@ class Sprider(object):
         cookie_support = urllib2.HTTPCookieProcessor(cj)
         opener = urllib2.build_opener(cookie_support, urllib2.HTTPHandler)
         urllib2.install_opener(opener)
-
-        #postdata = urllib.urlencode(self.postData)
         request = urllib2.Request(urlPath,headers=self.headers)
-        #print request.get_full_url(),request.get_data(),postdata,dir(request)
+        print request.get_full_url(),request.get_data()
         content = urllib2.urlopen(request).read()
         #print 'getContentByUrl:',content
         return content
@@ -56,68 +57,73 @@ class Sprider(object):
 
 
     def parseMatchInfoByContent(self,content):
-        global MATCH_CNT
-        global MATCH_INFO
+        global MATCH_CNT,MATCH_INFO,OLD_MATCH_INFO
+        MATCH_INFO ={}
         soup = BeautifulSoup(content)
-        s = soup.find_all('a')
-        matchNumber = self.getMatchNumbers(s)
-        print matchNumber
-        i = 0
-        for j in s[:-15]:
-            MATCH_INFO[i]={}
-            if j.text == '':
+        content = soup.prettify()
+        soup = BeautifulSoup(content)
+        s = soup.find('a',attrs={'class':'hdrlnk hdrlnksec nav-level-one cat_1 current-nav',} )
+        if not s:
+            return
+        tbody = soup.find('tbody')
+        findCats = tbody.findAll('th',attrs={'class':'c1 vx__sub-name algnl',})
+        matchCategory =[]
+        for cat in findCats:
+            #=print cat.text.strip()
+            matchCategory.append(cat.text.strip())
+        matchinfoText=tbody.text.strip()
+        matchinfoText = matchinfoText.split('\n')
+        matchinfo = []
+        for info in matchinfoText:
+            info = info.strip()
+            if info == u'':
                 continue
-            team1,team2 = self.getTeamSplitName(j)
-            score1,score2 = self.getTeamSplitScore(j)
-            time1,time2 = self.getMatchTime(j)
-            MATCH_INFO[i]['team1'] = team1
-            MATCH_INFO[i]['team2'] = team2
-            MATCH_INFO[i]['score1'] = score1
-            MATCH_INFO[i]['score2'] = score2
-            MATCH_INFO[i]['time1'] = time1
-            MATCH_INFO[i]['time2'] = time2
-            i+=1
-        #for i in MATCH_INFO:
-            #print str(MATCH_INFO[i]['time1'])+":"+str(MATCH_INFO[i]['time1']) +"     " + MATCH_INFO[i]['team1'] +"vs"+MATCH_INFO[i]['team2']
+            #print info
+            matchinfo.append(info)
+        MATCH_CNT = self.getRealMatchInfo(matchinfo,matchCategory)
+        #print MATCH_CNT ,len(MATCH_INFO)
+        return
 
+    def getInfoInOldIndex(self):
+        global OLD_MATCH_INFO
+    def getRealMatchInfo(self, matchinfo ,matchCategory):
+        global MATCH_INFO,OLD_MATCH_INFO
+        mCat = u'未知'
+        index = 0
+        i = 0
+        offset = 0
+        while(i<len(matchinfo)):
+            if self.isMatchCategory(matchinfo[i], matchCategory):
+                mCat = matchinfo[i]
+                offset = 4
+            else:
+                offset = 0
+            MATCH_INFO[index] = {}
+            #print 'offset',offset
+            MATCH_INFO[index]['matchCategory'] =  mCat
+            MATCH_INFO[index]['time1'] = matchinfo[i+offset].split(':')[0]
+            MATCH_INFO[index]['time2'] = matchinfo[i+offset].split(':')[1]
+            MATCH_INFO[index]['team1'] = matchinfo[i+offset+1]
+            MATCH_INFO[index]['score1'] = matchinfo[i+offset+2]
+            MATCH_INFO[index]['team2'] = matchinfo[i+offset+3]
+            MATCH_INFO[index]['score2'] = matchinfo[i+offset+4]
+            if len(matchinfo)>(i+offset+5) and matchinfo[i+offset+5].find('.')!=-1:
+                MATCH_INFO[index]['oupei'] = '('+matchinfo[i+offset+5] +' '+ matchinfo[i+offset+6] + ' ' + matchinfo[i+offset+7] +')'
+            else:
+                offset-=3
+                MATCH_INFO[index]['oupei'] = u'(停盘)'
+            i=i+offset+8
+            print  str(index) + '   '+MATCH_INFO[index]['matchCategory'] + "   "+ MATCH_INFO[index]['time1']+'   '+MATCH_INFO[index]['oupei'] +"     " + MATCH_INFO[index]['team1'] +"vs"+MATCH_INFO[index]['team2']
+            index+=1
+        return index
 
+    def isMatchCategory(self,match,matchCategory):
+        return match in matchCategory
 
+#sp = Sprider()
+#urlPath = 'https://mobile.28365365.com/sport/splash/Default.aspx?Sport=1&key=1&L=2&ip=
+#urlPath = 'http://www.28365365.com/Lite/cache/api/?&rw=in-play/overview&lng=10'
 
-
-
-    def getMatchNumbers(self,matches):
-        matchNumber = (len(matches)-16)
-        return matchNumber
-
-    def getTeamSplitName(self,contents):
-        try:
-            teamNames = contents.contents[0]
-        except:
-            teamNames = 'NA v NA'
-        names = teamNames.split('v')
-        return names[0],names[1]
-
-    def getTeamSplitScore(self,contents):
-        try:
-            teamScores = contents.contents[2].text
-            if not teamScores:
-                teamScores = '0-0'
-        except:
-            teamScores = '0-0'
-        scores = teamScores.split('-')
-        return scores[0],scores[1]
-
-    def getMatchTime(self,contents):
-        try:
-            matchTimes = contents.contents[3].text
-            if not matchTimes:
-                matchTimes = '00:00'
-        except:
-            matchTimes = '00:00'
-        times = matchTimes.split(':')
-        return times[0],times[1]
-
-
-sp = Sprider()
-#https://mobile.28365365.com/sport/splash/Default.aspx?Sport=1&key=1&L=2&ip=1
-sp.parseContentByUrl('https://mobile.28365365.com/sport/splash/Default.aspx?Sport=1&key=1&L=2&ip=1')
+#sp.parseContentByUrl(urlPath)
+#sp.getMatchDetails('https://mobile.28365365.com/sport/coupon/?ptid=0&key=1-1-5-26336398-2-0-0-1-1-0-0-0-0-0-1-0-0-0-0-0-0')
+#sp.parseContentByUrl(urlPath)
