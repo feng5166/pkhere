@@ -1,0 +1,46 @@
+/*reset*/
+ul{margin: 0;padding: 0;}
+li{list-style: none;}
+em{font-style: normal;}
+span{display: inline-block;}
+p{margin: 0px;}
+img{vertical-align: top;}
+a{text-decoration: none;}
+.tips{
+	transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-webkit-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+}
+/*end-reset*/
+
+.dsBanner{
+    max-height: 500px;
+    overflow-y: hidden;
+    max-width:1200px;
+    margin:0 auto;
+}
+.dsBanner .carousel-inner{
+    text-align: center;
+    background:#000;
+}
+.dsBanner .dsBannerImg{
+    width:100%;
+    max-width:1280px !important;
+    margin:0 auto;
+}
+.dsBanner .carousel-caption{
+    bottom:auto;
+    top:20%;
+}
+.dsBanner .carousel-caption h3{
+    font-size:28px;
+}
+.dsBanner .carousel-caption p{
+    font-size:18px;
+}
+
+footer{
+    font-size:12px;
+    color:#999;
+}

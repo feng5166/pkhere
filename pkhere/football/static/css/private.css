@@ -1,3 +1,9 @@
+
+body{
+    font-size:12px;
+}
+
+
 /* common css */
 .cRed, .cRed:hover{color:#f00 !important;}
 .cYellow, .cYellow:hover{color:#F1B634 !important;}
@@ -16,6 +22,15 @@ a:focus {
 .tableHover tr:hover td{background:#efefef !important;}
 
 /* bootstrap css reset */
+.navbar-inverse .navbar-brand{
+    color:#fff;
+    opacity:.7;
+    padding:10px 15px;
+}
+.navbar-inverse .navbar-brand:hover{
+    opacity: 1;
+}
+
 .panel-package-1{
     border:1px solid #82AF6F;
 }
@@ -93,6 +108,7 @@ table > thead > tr.info > th,table > tbody > tr.info > td{
     padding:3px;
     border-radius: 5px;
     width:130px;
+    margin-right:20px;
 }
 
 

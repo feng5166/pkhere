@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="Refresh" content="30" />
-        <title>比分直播 - PK足球 - 掌握全球足球比赛动态</title>
+        <title>PK足球 - 掌握全球足球比赛动态</title>
         <link rel="shortcut icon" href="/static/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=9">
         <meta name="keywords" content="比赛日程，比分直播，角球数据，事件直播，比赛走势，数据分析，竞猜社区，足球微博" />
@@ -17,11 +17,10 @@
         <script src="/static/js/respond.min.js"></script>
         <!-- IE css3 support end -->
         
-            <link type="text/css" rel="stylesheet" href="/static/css/global.css">
-            <link type="text/css" rel="stylesheet" href="/static/css/responsive-nav.css">
-            <script type="text/javascript" src="/static/js/responsive-nav.js"></script>
+            <link type="text/css" rel="stylesheet" href="/static/css/global_simple.css">
         
         <link type="text/css" rel="stylesheet" href="/static/css/private.css">
+         <link type="text/css" rel="stylesheet" href="/static/css/home.css">
     </head>
     <body>
         <div class="body_wrap">
@@ -36,74 +35,103 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">PK足球</a>
+        <a class="navbar-brand" href="/"><img src='/static/images/logoSmall.png' width='30' style="vertical-align:middle;" /> PK足球</a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active">
+          <li>
             <a href="/score">比分直播</a>
           </li>
+          <li>
+            <a href="#">视频直播</a>
+          </li>
         </ul>
+        
+            <div class="navbar-form navbar-right">
+                <a type="button" class="btn btn-success" href="#">登录</a>
+                <a type="button" class="btn btn-info" href="#">注册</a>
+            </div>
+        
+        
       </div><!-- /.navbar-collapse -->
     </div>
 </nav>
 <!-- END site/header --></div>
 
-<div class="container">
+<div id="carousel-example-generic" class="carousel slide dsBanner" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    </ol>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="table-responsive">
-            <h3>
-                比分直播
-                （{{ matchCnt }}）
-                <div class="navbar-right">
-                <button type="button" id="loading-reload-btn" data-loading-text="正在刷新..." class="btn btn-primary">刷新页面</button>
-                <script>
-                  $('#loading-reload-btn').click(function () {
-                    var btn = $(this)
-                    window.location.href=window.location.href;
-                    btn.button('loading')
-                  });
-                </script>
-                <small><strong>提示：</strong>比分直播不包含加时赛和点球大战</small>
-                </div>
-            </h3><hr/>
-            
-            
-            
-            <table class="table table-bordered table-responsive tableHover">
-                <thead>
-                    <tr class="info">
-                    <th>赛事</th>
-                    <th class="text-center"><img src="/static/images/icon_clock.png" style="vertical-align:middle;width:16px;" alt="时间" title="时间" /></th>
-                    <th>主队 v 客队 （实时欧赔）</th>
-                    <th class="text-center"><img src="/static/images/icon_goal.png" style="vertical-align:middle;width:16px;" alt="进球" title="进球" /></th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for i,j in matchInfo.items%}
-                    <tr>
-                        <td><a href="#">{{ j.matchCategory }}</a></td>
-                        <td class="text-center"><font color='red'>{{ j.time1 }}’</font></td>
-                        <td class="font12">
-                            {{ j.team1 }} v {{ j.team2 }}
-                            {{ j.oupei }}
-                        </td>
-                        <td class="text-center">
-                            
-                                <font color="red">{{ j.score1 }} v {{ j.score2 }}</font>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="/static/images/home/banner-1.jpg" alt="..." class="dsBannerImg">
+            <div class="carousel-caption" style="width:38%;text-align: left; left:12%;">
+                <h3>pk足球</h3>
+                <p style="font-size:16px;">PK足球很荣幸与您一起共同关注全球各类足球比赛，共享足球带来的乐趣。我们提供比分直播、比赛日程、足球微博、数据分析等全面的资讯服务，专业的赛前和实时大数据分析预测， 可以让您对比赛的预判更加精准。</p>
+                <p><br><a class="btn btn-primary btn-lg" role="button" href="/signup">立即注册</a></p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="/static/images/home/banner-2.jpg" alt="..." class="dsBannerImg">
+            <div class="carousel-caption" style="width:30%;text-align:left; right:15%; left:auto;top:15%;">
+                <h3>比分直播</h3>
+                <p style="font-size:16px;">国际顶级的足球数据平台，让我们囊括了全球近200个国家或地区， 超过500个各级足球联赛的详细比赛数据，在这里您能得到全面、准确、即时的足球赛事信息。</p>
+                <p><br><a class="btn btn-primary btn-lg" role="button" href="/signup">立即注册</a></p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="/static/images/home/banner-3.jpg" alt="..." class="dsBannerImg">
+            <div class="carousel-caption" style="width:35%;text-align:left; right:15%; left:auto;top:15%;">
+                <h3>竞猜社区、足球微博、视频直播</h3>
+                <p style="font-size:16px;">通过微博信息聚合，让您简单获取各个资深足球专家的最新信息，竞猜社区为您提供与专家直接交流的平台。<br/>同时为您搜罗了最全面的足球赛事直播信息， 只需轻轻一点，即可观看直播赛事。</p>
+                <p><br><a class="btn btn-primary btn-lg" role="button" href="#">立即注册</a></p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="/static/images/home/banner-4.jpg" alt="..." class="dsBannerImg">
+            <div class="carousel-caption" style="width:38%;text-align: left; left:12%;">
+                <h3>跨平台支持</h3>
+                <p style="font-size:16px;">PK足球提供PC端，移动端的跨平台支持， 让您随时随地方便获取即时数据信息！尽请期待~</p>
+                <p><br><a class="btn btn-primary btn-lg" role="button">下载Android APP</a>&nbsp;<a class="btn btn-primary btn-lg" role="button">下载IOS APP</a></p>
+            </div>
         </div>
     </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
 </div>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>关于PK足球</h2>
+            <p>PK足球很荣幸与您一起共同关注全球各类足球比赛，共享足球带来的乐趣。<br>&nbsp;</p>
+            <p>PK足球主要包括：比赛日程、比分直播、角球数据、事件直播、比赛走势、数据分析、竞猜社区、足球微博以及详实的历史数据等，欢迎您的加入！</p>
+        </div>
+        <div class="col-md-4">
+            <h2>IOS客户端</h2>
+            <br/>
+            <p><a href=""><img src="/static/images/home/ios_icon.png" width="80%" /></a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Android客户端</h2>
+            <br/>
+            <p><a href=""><img src="/static/images/home/googleplay_icon.png" width="80%" /></a></p>
+        </div>
+    </div>
+</div> <!-- /container -->
+
 
 <div id="footer" class="container"><hr>
 <footer>
@@ -112,7 +140,7 @@
             <p>本站所有资料均由PK足球所有，如欲转载、建立镜像、选用或其他任何商业用途，请联系商谈。</p>
         </div>
         <div class="col-md-6">
-            <p class="text-right">使用本站遇到任何问题可致电<br/>
+            <p class="text-right"><br/>
                 Copyright © 2014 Pkhere.com. All Rights Reserved.
             </p>
         </div>
@@ -122,4 +150,3 @@
         </div>
     </body>
 </html>
-

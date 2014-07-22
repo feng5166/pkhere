@@ -6,7 +6,7 @@ admin.autodiscover()
 urlpatterns = patterns('football.views',
     # Examples:
     url(r'^$', 'index'),
-    #url(r'^bf/$', 'details'),
+    url(r'^score/$', 'score'),
     #url(r'^blog/', include('blog.urls')),
     #url(r'^admin/', include(admin.site.urls)),
 )
