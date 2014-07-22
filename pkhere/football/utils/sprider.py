@@ -78,10 +78,10 @@ class Sprider(object):
             info = info.strip()
             if info == u'':
                 continue
-            #print info
+            print info
             matchinfo.append(info)
-        MATCH_CNT = self.getRealMatchInfo(matchinfo,matchCategory)
-        #print MATCH_CNT ,len(MATCH_INFO)
+        self.getRealMatchInfo(matchinfo,matchCategory)
+        MATCH_CNT = len(MATCH_INFO)
         return
 
     def getInfoInOldIndex(self):
@@ -101,8 +101,13 @@ class Sprider(object):
             MATCH_INFO[index] = {}
             #print 'offset',offset
             MATCH_INFO[index]['matchCategory'] =  mCat
-            MATCH_INFO[index]['time1'] = matchinfo[i+offset].split(':')[0]
-            MATCH_INFO[index]['time2'] = matchinfo[i+offset].split(':')[1]
+            try:
+                MATCH_INFO[index]['time1'] = matchinfo[i+offset].split(':')[0]
+                MATCH_INFO[index]['time2'] = matchinfo[i+offset].split(':')[1]
+            except:
+                MATCH_INFO[index]['time1'] = '00'
+                MATCH_INFO[index]['time2'] = '00'
+                offset -=1
             MATCH_INFO[index]['team1'] = matchinfo[i+offset+1]
             MATCH_INFO[index]['score1'] = matchinfo[i+offset+2]
             MATCH_INFO[index]['team2'] = matchinfo[i+offset+3]
