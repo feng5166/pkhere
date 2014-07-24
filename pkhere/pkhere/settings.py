@@ -29,6 +29,12 @@ ALLOWED_HOSTS = []
 TEMPLATE_DIRS = (
     '',
 )
+DATABASE_ENGINE = 'sqlite3'
+DATABASE_NAME = '../db.sqlite3'
+DATABASE_USER = ''
+DATABASE_PASSWORD = ''
+DATABASE_HOST = ''
+DATABASE_PORT = ''
 
 
 # Application definition
