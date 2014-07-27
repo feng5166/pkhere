@@ -2,8 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="Refresh" content="30" />
-        <title>比分直播 - PK足球 - 掌握全球足球比赛动态</title>
+        <title>视频直播 - PK足球</title>
         <link rel="shortcut icon" href="/static/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=9">
         <meta name="keywords" content="比赛日程，比分直播，角球数据，事件直播，比赛走势，数据分析，竞猜社区，足球微博" />
@@ -16,11 +15,9 @@
         <!-- IE css3 support start -->
         <script src="/static/js/respond.min.js"></script>
         <!-- IE css3 support end -->
-
             <link type="text/css" rel="stylesheet" href="/static/css/global.css">
             <link type="text/css" rel="stylesheet" href="/static/css/responsive-nav.css">
             <script type="text/javascript" src="/static/js/responsive-nav.js"></script>
-
         <link type="text/css" rel="stylesheet" href="/static/css/private.css">
     </head>
     <body>
@@ -36,18 +33,25 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">PK足球</a>
+        <a class="navbar-brand" href="/"><img src='/static/images/logoSmall.png' width='30' style="vertical-align:middle;" /> PK足球</a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active">
+          <li>
             <a href="/score">比分直播</a>
           </li>
-          <li>
+          <li class="active">
             <a href="/zhibo">视频直播</a>
           </li>
         </ul>
+
+            <div class="navbar-form navbar-right">
+                <a type="button" class="btn btn-success" href="#">登录</a>
+                <a type="button" class="btn btn-info" href="#">注册</a>
+            </div>
+
+
       </div><!-- /.navbar-collapse -->
     </div>
 </nav>
@@ -57,57 +61,28 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="table-responsive">
-            <h3>
-                比分直播
-                （{{ matchCnt }}）
-                <div class="navbar-right">
-                <button type="button" id="loading-reload-btn" data-loading-text="正在刷新..." class="btn btn-primary">刷新页面</button>
-                <script>
-                  $('#loading-reload-btn').click(function () {
-                    var btn = $(this)
-                    window.location.href=window.location.href;
-                    btn.button('loading')
-                  });
-                </script>
-                <small><strong>提示：</strong>比分直播不包含加时赛和点球大战</small>
-                </div>
-            </h3><hr/>
-            
-            
-            
-            <table class="table table-bordered table-responsive tableHover">
-                <thead>
-                    <tr class="info">
-                    <th>赛事</th>
-                    <th class="text-center"><img src="/static/images/icon_clock.png" style="vertical-align:middle;width:16px;" alt="时间" title="时间" /></th>
-                    <th>主队 v 客队 （实时欧赔）</th>
-                    <th class="text-center"><img src="/static/images/icon_goal.png" style="vertical-align:middle;width:16px;" alt="进球" title="进球" /></th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for i,j in matchInfo.items%}
-                    <tr>
-                        <td><a href="#">{{ j.matchCategory }}</a></td>
-                        <td class="text-center"><font color='red'>{{ j.time1 }}’</font></td>
-                        <td class="font12">
-                            {{ j.team1 }} v {{ j.team2 }}
-                            {{ j.oupei }}
-                        </td>
-                        <td class="text-center">
-                            
-                                <font color="red">{{ j.score1 }} v {{ j.score2 }}</font>
-                        </td>
-                    </tr>
+        <h4>
+            视频直播
+        </h4><hr/>
+        <div class="row">
+            <div class="col-md-9">
+                
+                <ul class="list-group">
+                    {% for liveMatch in liveMatchs%}
+                        <li class="list-group-item list-group-item-success">
+                        {{ liveMatch.matchName }}
+                        {{ liveMatch.linkPath|safe }}
+                        </li>
                     {% endfor %}
-                </tbody>
-            </table>
+                </ul>
+                
+            </div>
+            <div class="col-md-3">
+            </div>
         </div>
     </div>
 </div>
 </div>
-
 <div id="footer" class="container"><hr>
 <footer>
     <div class="row" id="copyright">
@@ -115,8 +90,8 @@
             <p>本站所有资料均由PK足球所有，如欲转载、建立镜像、选用或其他任何商业用途，请联系商谈。</p>
         </div>
         <div class="col-md-6">
-            <p class="text-right">使用本站遇到任何问题可致电<br/>
-                Copyright © 2014 Pkhere.com. All Rights Reserved.
+            <p class="text-right"><br/>
+                Copyright © 2014 Dorics.com. All Rights Reserved.
             </p>
         </div>
     </div>

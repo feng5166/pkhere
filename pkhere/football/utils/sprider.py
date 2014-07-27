@@ -6,6 +6,7 @@ import cookielib
 import re
 import StringIO
 import gzip
+from football.models import liveMatchInfo
 from bs4 import BeautifulSoup
 
 MATCH_CNT = 0
@@ -125,7 +126,12 @@ class Sprider(object):
     def isMatchCategory(self,match,matchCategory):
         return match in matchCategory
 
+    def checkInDateBase(self):
+        print 'checkInDateBase'
+        print liveMatchInfo.objects
+
 #sp = Sprider()
+#sp.checkInDateBase()
 #urlPath = 'https://mobile.28365365.com/sport/splash/Default.aspx?Sport=1&key=1&L=2&ip=
 #urlPath = 'http://www.28365365.com/Lite/cache/api/?&rw=in-play/overview&lng=10'
 
