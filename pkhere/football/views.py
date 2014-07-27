@@ -27,10 +27,7 @@ def zhibo(response):
         liveMatch.matchName = liveMatch.matchName.replace('</b>','')
         liveMatch.matchName  = liveMatch.dateTime.strip().split(' ')[0]  + " " + liveMatch.matchName
         liveMatch.linkPath  = liveMatch.linkPath.split('@')[1:]
-        # <a href="http://sports.cntv.cn/live/cctv5plus/index.shtml" target="_blank">{{ liveMatch.oo }}</a>
         liveMatch.linkPath = "<a href=" + liveMatch.linkPath[1] + ' target=\"_blank\">' + liveMatch.linkPath[0] + "</a>"
-        liveMatch.oo = "11111111111112321311" #liveMatch.dateTime.strip()
-        print '----------2333',liveMatch.dateTime
     return render_to_response('football/template/zb.html',
                               {'liveMatchs': liveMatchs,
                               } )
