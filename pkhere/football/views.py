@@ -33,6 +33,16 @@ def zhibo(response):
                               } )
 
 def zhiboDetails(response):
-    id = response.GET.get('path')
-    id = u'直播详细页面正在建设中'
-    return HttpResponse(id)
+    path = response.GET.get('path')
+    urlPath = 'http://www.zhibo8.cc'+path
+    sp =sprider.Sprider()
+    titleName,matchDetails = sp.parseContentByUrl(urlPath)
+    if not matchDetails:
+         matchDetails.append(u'<font color="red"><strong>直播信号(该赛事直播已结束)</strong></font>')
+    print titleName
+    print matchDetails
+    return render_to_response('football/template/zbDetails.html',
+                                {'titleName': titleName,
+                                'matchDetails':  matchDetails,
+                                }
+                            )

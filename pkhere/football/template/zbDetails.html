@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>视频直播详细资料 - PK足球</title>
+        <link rel="shortcut icon" href="/static/favicon.ico">
+        <meta http-equiv="X-UA-Compatible" content="IE=9">
+        <meta name="keywords" content="比赛日程，比分直播，角球数据，事件直播，比赛走势，数据分析，竞猜社区，足球微博" />
+        <meta name="description" content="PK足球主要包括：比赛日程、比分直播、角球数据、事件直播、比赛走势、数据分析、竞猜社区、足球微博以及详实的历史数据等。" />
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="/static/css/font-awesome.min.css">
+        <!-- IE css3 support start -->
+        <script src="/static/js/respond.min.js"></script>
+        <!-- IE css3 support end -->
+
+            <link type="text/css" rel="stylesheet" href="/static/css/global.css">
+            <link type="text/css" rel="stylesheet" href="/static/css/responsive-nav.css">
+            <script type="text/javascript" src="/static/js/responsive-nav.js"></script>
+
+        <link type="text/css" rel="stylesheet" href="/static/css/private.css">
+    </head>
+    <body>
+        <div class="body_wrap">
+        <div id="header"><!-- BEGIN site/header -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><img src='/static/images/logoSmall.png' width='30' style="vertical-align:middle;" /> PK足球</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/score">比分直播</a>
+          </li>
+          <li>
+            <a href="/zhibo">视频直播</a>
+          </li>
+        </ul>
+
+            <div class="navbar-form navbar-right">
+                <a type="button" class="btn btn-success" href="#">登录</a>
+                <a type="button" class="btn btn-info" href="#">注册</a>
+            </div>
+
+
+      </div><!-- /.navbar-collapse -->
+    </div>
+</nav>
+<!-- END site/header --></div>
+
+<div class="container">
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                {{ titleName }}
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-pills">
+            	    <a href="#" target="_blank"><font color="red"><strong>直播信号:</strong></font></a></br>
+                    {% for detailsInfo in matchDetails %}
+                    <li>{{ detailsInfo|safe }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="footer" class="container"><hr>
+<footer>
+    <div class="row" id="copyright">
+        <div class="col-md-6">
+            <p>本站所有资料均由PK足球所有，如欲转载、建立镜像、选用或其他任何商业用途，请联系商谈。</p>
+        </div>
+        <div class="col-md-6">
+            <p class="text-right">
+                Copyright © 2014 Pkhere.com. All Rights Reserved.
+            </p>
+        </div>
+    </div>
+</footer>
+</div>
+        </div>
+    </body>
+</html>
