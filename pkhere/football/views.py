@@ -36,6 +36,7 @@ def zhiboDetails(response):
     path = response.GET.get('path')
     urlPath = 'http://www.zhibo8.cc'+path
     sp =sprider.Sprider()
+    print 'zhiboDetails:',urlPath
     titleName,matchDetails = sp.parseContentByUrl(urlPath)
     if not matchDetails:
          matchDetails.append(u'<font color="red"><strong>直播信号(该赛事直播已结束)</strong></font>')

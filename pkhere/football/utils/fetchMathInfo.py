@@ -208,7 +208,7 @@ class ZhiBoSprider(Sprider):
         self.match_zhibo = {}
         self.index = 0
         self.realZhiBoInfo(boxResult[2])
-        #self.realZhiBoInfo(boxResult[3])
+        self.realZhiBoInfo(boxResult[3])
 
     def realZhiBoInfo(self,boxResult):
         content = boxResult
@@ -219,18 +219,20 @@ class ZhiBoSprider(Sprider):
             matchName = u''
             for name in contents:
                 self.match_zhibo[self.index] = {}
-                print 'realZhiBoInfo:',name,contents
+                #print 'realZhiBoInfo:',name,contents
                 if name.name=='a':
                     if name['href'].find('http') ==-1:
                         zhiboName = name.get_text()
-                        zhiboLink = "http://www.pkhere.com/zhiboDetails?path=" + name['href']
-                        nameAndLink = '@' + zhiboName + '@' + zhiboLink
+                        zhiboLink = "http://www.zhibo8.cc" + name['href']
+                        nameAndLink = '@' + zhiboName + '@' + "http://127.0.0.1:8000/zhiboDetails?path=" +name['href']
                 else:
                     matchName = matchName + unicode(name)
             self.match_zhibo[self.index]['matchName'] = matchName.strip()
             self.match_zhibo[self.index]['dateTime']  =  dateTime
             self.match_zhibo[self.index]['linkPath']  =  nameAndLink
-            print self.match_zhibo[self.index]['linkPath'],self.match_zhibo[self.index]['linkPath']
+            self.setUrlPath(zhiboLink)
+            _,self.match_zhibo[self.index]['linkDetail']=self.parseMatchDetailsByContent(zhiboLink)
+            #print self.match_zhibo[self.index]['linkPath'],self.match_zhibo[self.index]['linkPath']
             self.index = self.index + 1
         #for index in self.match_zhibo:
             #print self.match_zhibo[index]['dateTime'] + u'   ' + self.match_zhibo[index]['matchName'] + u'   ' + str(self.match_zhibo[index]['linkPath'])
@@ -238,19 +240,41 @@ class ZhiBoSprider(Sprider):
         #self.sqlliteHelper.drop_table('football_livematchzhibo')
         #return
         self.parseZhiBoMatch()
-        fetchall_sql = '''SELECT * FROM football_livematchzhibo'''
-        self.sqlliteHelper.fetchall(fetchall_sql)
+        #fetchall_sql = '''SELECT * FROM football_livematchzhibo'''
+        #self.sqlliteHelper.fetchall(fetchall_sql)
         delete_sql = ''' DELETE FROM football_livematchzhibo '''
         self.sqlliteHelper.delete(delete_sql,None)
-        save_sql = '''INSERT INTO football_livematchzhibo values (?, ?, ?,?)'''
+        save_sql = '''INSERT INTO football_livematchzhibo values (?, ?, ?,?,?)'''
         datainfo = []
         for index in self.match_zhibo:
-            print '------',self.match_zhibo[index]['dateTime']
-            data =(index,self.match_zhibo[index]['matchName'],self.match_zhibo[index]['dateTime'],self.match_zhibo[index]['linkPath'])
+            data =(index,self.match_zhibo[index]['matchName'],self.match_zhibo[index]['dateTime'],self.match_zhibo[index]['linkPath'],self.match_zhibo[index]['linkDetail'])
             datainfo.append(data)
         self.sqlliteHelper.save(save_sql, datainfo)
         fetchall_sql = '''SELECT * FROM football_livematchzhibo'''
         self.sqlliteHelper.fetchall(fetchall_sql)
+
+    def parseMatchDetailsByContent(self,urlPath):
+        headers = {}
+        self.setHeader(headers)
+        self.setUrlPath(urlPath)
+        content = self.getContentByUrl()
+        soup = BeautifulSoup(content)
+        #print soup
+        titleName =  soup.find('div',attrs={'class':'title',} ).text
+        results =  soup.find('div',attrs={'id':'signals',} )
+        details = []
+        for content in results.contents:
+            content = unicode(content)
+            #print content.find('http:'), content.find('www.zhibo8.cc')==-1 , content.find('www.188bifen.com')==-1,content
+            if content.find('<a')!=-1 and content.find('www.zhibo8.cc')==-1 and content.find('www.188bifen.com')==-1:
+                details.append(content)
+        htmlContent = ""
+        if not details:
+            htmlContent =u'<font color="red"><strong>直播信号(该赛事直播已结束)</strong></font>'
+            return titleName,htmlContent
+        for matchDetail in details:
+            htmlContent = htmlContent +  "<li>" + matchDetail + "</li>"
+        return titleName,htmlContent
 
 #urlPath = 'https://mobile.28365365.com/sport/splash/Default.aspx?Sport=1&key=1&L=2&ip=
 
@@ -267,7 +291,7 @@ detailPath ='http://www.28365365.com/Lite/cache/api/?clt=9994&op=14&rw=in-play/&
 def parseZhiBoByContent():
     dbFilePath ='/Users/DullBaby/Desktop/code/www/pkhere/db.sqlite3'
     urlPath = "http://www.zhibo8.cc"
-    tableName = 'football_liveMatchInfo'
+    tableName = 'football_liveMatchZhiBo'
     headers = {}
     sp = ZhiBoSprider(urlPath,dbFilePath,tableName)
     sp.setHeader(headers)
@@ -289,6 +313,18 @@ def parseBifenByContent():
     sp.setHeader(headers)
     sp.parseContentByUrl()
     sp.updateMatchInfo()
+
+def testZhiBoDetails():
+    dbFilePath ='/Users/DullBaby/Desktop/code/www/pkhere/db.sqlite3'
+    urlPath = "http://www.zhibo8.cc/zhibo/zuqiu/2014/0806saisaluonijivssading.htm"
+    tableName = 'football_liveMatchInfo'
+    sp = ZhiBoSprider(urlPath,dbFilePath,tableName)
+    titleName,matchDetails = sp.parseMatchDetailsByContent(urlPath)
+    print titleName
+    print matchDetails
+    return titleName,matchDetails
+
+
 
 if __name__ == '__main__':
     parseZhiBoByContent()

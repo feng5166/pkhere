@@ -29,6 +29,6 @@ class liveMatchZhiBo(models.Model):
     matchName = models.CharField(max_length=100)
     dateTime = models.CharField(max_length=50)
     linkPath = models.CharField(max_length=500)
+    linkDetail = models.CharField(max_length=1000)
     def __str__(self):
         return '%s %s' % (self.dateTime, self.matchName)
-

@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 MATCH_CNT = 0
 MATCH_INFO = {}
 OLD_MATCH_INFO ={}
-PREFIX_PATH = "https://mobile.28365365.com/sport"
 class Sprider(object):
     _instance = None
     def __init__(self):
@@ -47,7 +46,10 @@ class Sprider(object):
         for content in results.contents:
             content = unicode(content)
             print content.find('http:'), content.find('www.zhibo8.cc')==-1 , content.find('www.188bifen.com')==-1,content
-            if content.find('http:')!=-1 and content.find('www.zhibo8.cc')==-1 and content.find('www.188bifen.com')==-1:
+            if content.find('<a')!=-1 and content.find('www.zhibo8.cc')==-1 and content.find('www.188bifen.com')==-1:
                 details.append(content)
         print '------------------',details
         return titleName,details
+
+sp = Sprider()
+sp.parseContentByUrl("http://www.zhibo8.cc/zhibo/zuqiu/2014/0730kalabakevssaercibao.htm")
