@@ -5,7 +5,8 @@ from bs4 import BeautifulSoup
 from datetime import date
 
 import sqliteHelper
-
+DBFILEPATH ='/Users/DullBaby/Desktop/code/www/pkhere/db.sqlite3'
+PREFIX_URL = 'http://www.pkhere.com/zhiboDetails?path='
 class Sprider(object):
     def __init__(self,dataBasePath,urlPath,sqlTable):
         self.headers  = {}
@@ -211,6 +212,7 @@ class ZhiBoSprider(Sprider):
         self.realZhiBoInfo(boxResult[3])
 
     def realZhiBoInfo(self,boxResult):
+        global PREFIX_URL
         content = boxResult
         dateTime =  content.find('div',attrs={'class':'titlebar',} ).text
         matchList = content.findAll('li')
@@ -224,7 +226,7 @@ class ZhiBoSprider(Sprider):
                     if name['href'].find('http') ==-1:
                         zhiboName = name.get_text()
                         zhiboLink = "http://www.zhibo8.cc" + name['href']
-                        nameAndLink = '@' + zhiboName + '@' + "http://127.0.0.1:8000/zhiboDetails?path=" +name['href']
+                        nameAndLink = '@' + zhiboName + '@' + PREFIX_URL +name['href']
                 else:
                     matchName = matchName + unicode(name)
             self.match_zhibo[self.index]['matchName'] = matchName.strip()
@@ -289,16 +291,16 @@ detailPath ='http://www.28365365.com/Lite/cache/api/?clt=9994&op=14&rw=in-play/&
 
 
 def parseZhiBoByContent():
-    dbFilePath ='/Users/DullBaby/Desktop/code/www/pkhere/db.sqlite3'
+    global DBFILEPATH
     urlPath = "http://www.zhibo8.cc"
     tableName = 'football_liveMatchZhiBo'
     headers = {}
-    sp = ZhiBoSprider(urlPath,dbFilePath,tableName)
+    sp = ZhiBoSprider(urlPath,DBFILEPATH,tableName)
     sp.setHeader(headers)
     sp.updateMatchZhiBoInfo()
 
 def parseBifenByContent():
-    dbFilePath ='/Users/DullBaby/Desktop/code/www/pkhere/db.sqlite3'
+    global DBFILEPATH
     urlPath = 'http://www.28365365.com/Lite/cache/api/?&rw=in-play/overview&lng=10'
     tableName = 'football_liveMatchInfo'
     headers  = {
@@ -309,16 +311,16 @@ def parseBifenByContent():
                 'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:30.0) Gecko/20100101 Firefox/30.0',
                 'Cookie':'aps03=tzi=27&oty=2&bst=1&hd=Y&lng=10&cf=E&ct=42&cst=132&v=1&cg=0&ltwo=False; rmbs=3; usdi=uqid=BC192014%2D5EE0%2D47AF%2D8404%2D5C3EE5C0B53B',
                 }
-    sp = BiFenSprider(urlPath,dbFilePath,tableName)
+    sp = BiFenSprider(urlPath,DBFILEPATH,tableName)
     sp.setHeader(headers)
     sp.parseContentByUrl()
     sp.updateMatchInfo()
 
 def testZhiBoDetails():
-    dbFilePath ='/Users/DullBaby/Desktop/code/www/pkhere/db.sqlite3'
+    global DBFILEPATH
     urlPath = "http://www.zhibo8.cc/zhibo/zuqiu/2014/0806saisaluonijivssading.htm"
     tableName = 'football_liveMatchInfo'
-    sp = ZhiBoSprider(urlPath,dbFilePath,tableName)
+    sp = ZhiBoSprider(urlPath,DBFILEPATH,tableName)
     titleName,matchDetails = sp.parseMatchDetailsByContent(urlPath)
     print titleName
     print matchDetails
