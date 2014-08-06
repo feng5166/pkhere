@@ -70,9 +70,7 @@
             <div class="panel-body">
                 <ul class="nav nav-pills">
             	    <a href="#" target="_blank"><font color="red"><strong>直播信号:</strong></font></a></br>
-                    {% for detailsInfo in matchDetails %}
-                    <li>{{ detailsInfo|safe }}</li>
-                    {% endfor %}
+                    <li>{{ matchDetails|safe }}</li>
                 </ul>
             </div>
         </div>

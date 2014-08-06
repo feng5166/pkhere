@@ -1,12 +1,13 @@
 #-*- coding: UTF-8 -*-
 import urllib2
 import cookielib
+import time
 from bs4 import BeautifulSoup
 from datetime import date
 
+import globals
 import sqliteHelper
-DBFILEPATH ='/Users/DullBaby/Desktop/code/www/pkhere/db.sqlite3'
-PREFIX_URL = 'http://www.pkhere.com/zhiboDetails?path='
+
 class Sprider(object):
     def __init__(self,dataBasePath,urlPath,sqlTable):
         self.headers  = {}
@@ -34,14 +35,24 @@ class Sprider(object):
         opener = urllib2.build_opener(cookie_support, urllib2.HTTPHandler)
         urllib2.install_opener(opener)
         request = urllib2.Request(self.urlPath,headers=self.headers)
-        print request.get_full_url(),request.get_data()
-        content = urllib2.urlopen(request).read()
+        #print request.get_full_url(),request.get_data()
+        fails = 0
+        while True:
+            print 'fails',fails
+            if fails >= 3:
+                break
+            try:
+                content = urllib2.urlopen(request,timeout=20).read()
+                break
+            except:
+                fails+=1
+
         return content
 
 
 class BiFenSprider(Sprider):
     def __init__(self,urlPath,dataBasePath,sqlTable):
-        super(Sprider, self).__init__(urlPath,dataBasePath,sqlTable)
+        super(Sprider, self).__init__()
         self.match_info = {}
         self.match_cnt = 0
         self.sqlliteHelper = sqliteHelper.SqliteHelper(dataBasePath)
@@ -80,7 +91,7 @@ class BiFenSprider(Sprider):
             info = info.strip()
             if info == u'':
                 continue
-            print info
+            #print info
             matchinfo.append(info)
         self.match_cnt  = self.getRealMatchInfo(matchinfo,matchCategory,matchLinks)
         return
@@ -124,6 +135,7 @@ class BiFenSprider(Sprider):
                 self.match_info[index]['linkPath'] = matchLinks[index]
                 print self.match_info[index]['linkPath']
             except:
+                self.match_info[index]['linkPath'] =""
                 print len(self.match_info),len(matchLinks),index,self.match_info[index]['homeTeam']
             if len(matchinfo)>(i+offset+5) and matchinfo[i+offset+5].find('.')!=-1:
                 self.match_info[index]['currentOupeiBet'] = '('+matchinfo[i+offset+5] +' '+ matchinfo[i+offset+6] + ' ' + matchinfo[i+offset+7] +')'
@@ -133,39 +145,55 @@ class BiFenSprider(Sprider):
             i=i+offset+8
             print  str(index) + '   '+self.match_info[index]['matchType'] + "   "+ self.match_info[index]['matchMinute']+'   '+self.match_info[index]['currentOupeiBet'] +"     " + self.match_info[index]['homeTeam'] +"vs"+self.match_info[index]['awayTeam']
             index+=1
+        self.getMatchDetails()
         return index
 
     def isMatchCategory(self,match,matchCategory):
         return match in matchCategory
 
 
-    def getMatchDetails(self,urlPath):
-        content = self.getContentByUrl(urlPath)
-        soup = BeautifulSoup(content)
-        content = soup.prettify()
-        soup = BeautifulSoup(content)
-        #print soup
-        homeTeamBet = soup.find('td',attrs={'class':'c1 bl ti',} )
-        homeTeamBet= homeTeamBet.text.replace('\n','').strip()
-        homeTeamBet = homeTeamBet.split(' ')
-        awayTeamBet = soup.find('td',attrs={'class':'c2 bl ti',} )
-        awayTeamBet= awayTeamBet.text.replace('\n','').strip()
-        awayTeamBet = awayTeamBet.split(' ')
-        print homeTeamBet[0],homeTeamBet[1],homeTeamBet[-1]
-        print awayTeamBet[0],awayTeamBet[1],awayTeamBet[-1]
-        betsInfo = soup.findAll('div',attrs={'class':'cpnseccnt',} )
-        #print betsInfo
-        for betInfo in betsInfo:
-            betInfo =  betInfo.text.replace('\n','').strip()
-            if betInfo.find(u'亚洲让分盘')!=-1:
-                rangfenBet = betInfo.split(' ')
-            elif betInfo.find(u'大小盘')!=-1:
-                daxiaoBet = betInfo.split(' ')
-        print rangfenBet
-        print daxiaoBet
-        corners = soup.findAll('td',attrs={'class':'cst',} )
-        #for corner in corners:
-        print corners[0].text.strip(),corners[5].text.strip()
+    def getMatchDetails(self):
+        for index in self.match_info:
+            urlPath = self.match_info[index]['linkPath']
+            if urlPath == "":
+                continue
+            urlPath = "http://www.28365365.com/Lite/cache/api/?clt=9994&op=14&rw=in-play/&cid=9998&cpid="+urlPath +"&wg=False&cf=E&lng=10&cty=42&fm=1&tzi=27&oty=2&hd=Y&mlive=0"
+            print 'urlPath:',urlPath
+            self.setUrlPath(urlPath)
+            content = self.getContentByUrl()
+            print content
+            soup = BeautifulSoup(content)
+            content = soup.prettify()
+            soup = BeautifulSoup(content)
+
+            homeTeamBet = soup.find('td',attrs={'class':'c1 bl ti',} )
+            print 'homeTeamBet',homeTeamBet
+            if homeTeamBet:
+                homeTeamBet= homeTeamBet.text.replace('\n','').strip()
+            else:
+                homeTeamBet = u'停盘   '
+            homeTeamBet = homeTeamBet.split(' ')
+            awayTeamBet = soup.find('td',attrs={'class':'c2 bl ti',} )
+            if awayTeamBet:
+                awayTeamBet= awayTeamBet.text.replace('\n','').strip()
+            else:
+                awayTeamBet = u'停盘   '
+            awayTeamBet = awayTeamBet.split(' ')
+            print homeTeamBet[0],homeTeamBet[1],homeTeamBet[-1]
+            print awayTeamBet[0],awayTeamBet[1],awayTeamBet[-1]
+            betsInfo = soup.findAll('div',attrs={'class':'cpnseccnt',} )
+            #print betsInfo
+            for betInfo in betsInfo:
+                betInfo =  betInfo.text.replace('\n','').strip()
+                if betInfo.find(u'亚洲让分盘')!=-1:
+                    rangfenBet = betInfo.split(' ')
+                elif betInfo.find(u'大小盘')!=-1:
+                    daxiaoBet = betInfo.split(' ')
+            print rangfenBet
+            print daxiaoBet
+            corners = soup.findAll('td',attrs={'class':'cst',} )
+            #for corner in corners:
+            print corners[0].text.strip(),corners[5].text.strip()
 
     def updateMatchInfo(self):
         fetchall_sql = '''SELECT * FROM football_liveMatchInfo'''
@@ -208,11 +236,13 @@ class ZhiBoSprider(Sprider):
         boxResult = soup.findAll('div',attrs={'class':'box',} )
         self.match_zhibo = {}
         self.index = 0
+        print 'parseZhiBoMatch1------'
         self.realZhiBoInfo(boxResult[2])
+        print 'parseZhiBoMatch2------'
         self.realZhiBoInfo(boxResult[3])
+        print 'parseZhiBoMatch3------'
 
     def realZhiBoInfo(self,boxResult):
-        global PREFIX_URL
         content = boxResult
         dateTime =  content.find('div',attrs={'class':'titlebar',} ).text
         matchList = content.findAll('li')
@@ -226,18 +256,19 @@ class ZhiBoSprider(Sprider):
                     if name['href'].find('http') ==-1:
                         zhiboName = name.get_text()
                         zhiboLink = "http://www.zhibo8.cc" + name['href']
-                        nameAndLink = '@' + zhiboName + '@' + PREFIX_URL +name['href']
+                        nameAndLink = '@' + zhiboName + '@' + globals.PREFIX_URL +str(self.index)
                 else:
                     matchName = matchName + unicode(name)
             self.match_zhibo[self.index]['matchName'] = matchName.strip()
             self.match_zhibo[self.index]['dateTime']  =  dateTime
             self.match_zhibo[self.index]['linkPath']  =  nameAndLink
+            self.match_zhibo[self.index]['zhiboLink']  =  zhiboLink
             self.setUrlPath(zhiboLink)
             _,self.match_zhibo[self.index]['linkDetail']=self.parseMatchDetailsByContent(zhiboLink)
             #print self.match_zhibo[self.index]['linkPath'],self.match_zhibo[self.index]['linkPath']
             self.index = self.index + 1
-        #for index in self.match_zhibo:
-            #print self.match_zhibo[index]['dateTime'] + u'   ' + self.match_zhibo[index]['matchName'] + u'   ' + str(self.match_zhibo[index]['linkPath'])
+        for index in self.match_zhibo:
+            print self.match_zhibo[index]['matchName']
     def updateMatchZhiBoInfo(self):
         #self.sqlliteHelper.drop_table('football_livematchzhibo')
         #return
@@ -256,6 +287,7 @@ class ZhiBoSprider(Sprider):
         self.sqlliteHelper.fetchall(fetchall_sql)
 
     def parseMatchDetailsByContent(self,urlPath):
+        #time.sleep(3)
         headers = {}
         self.setHeader(headers)
         self.setUrlPath(urlPath)
@@ -267,7 +299,8 @@ class ZhiBoSprider(Sprider):
         details = []
         for content in results.contents:
             content = unicode(content)
-            #print content.find('http:'), content.find('www.zhibo8.cc')==-1 , content.find('www.188bifen.com')==-1,content
+            print 'parseMatchDetailsByContent:',titleName,content
+            print content.find('http:'), content.find('www.zhibo8.cc')==-1 , content.find('www.188bifen.com')==-1
             if content.find('<a')!=-1 and content.find('www.zhibo8.cc')==-1 and content.find('www.188bifen.com')==-1:
                 details.append(content)
         htmlContent = ""
@@ -283,24 +316,7 @@ class ZhiBoSprider(Sprider):
 
 detailPath ='http://www.28365365.com/Lite/cache/api/?clt=9994&op=14&rw=in-play/&cid=9998&cpid=1-1-5-26350354-2-0-0-1-1-0-0-0-0-0-1-0-0-0-0-0-0&wg=False&cf=E&lng=10&cty=42&fm=1&tzi=27&oty=2&hd=Y&mlive=0'
 
-#sp.parseContentByUrl(urlPath)
-#sp.getMatchDetails('https://mobile.28365365.com/sport/coupon/?ptid=0&key=1-1-5-26346041-2-0-0-1-1-0-0-0-0-0-1-0-0-0-0-0-0')
-#sp.parseContentByUrl(urlPath)
-#sp.getMatchDetails(detailPath)checkInDateBase
-
-
-
-def parseZhiBoByContent():
-    global DBFILEPATH
-    urlPath = "http://www.zhibo8.cc"
-    tableName = 'football_liveMatchZhiBo'
-    headers = {}
-    sp = ZhiBoSprider(urlPath,DBFILEPATH,tableName)
-    sp.setHeader(headers)
-    sp.updateMatchZhiBoInfo()
-
 def parseBifenByContent():
-    global DBFILEPATH
     urlPath = 'http://www.28365365.com/Lite/cache/api/?&rw=in-play/overview&lng=10'
     tableName = 'football_liveMatchInfo'
     headers  = {
@@ -311,24 +327,22 @@ def parseBifenByContent():
                 'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:30.0) Gecko/20100101 Firefox/30.0',
                 'Cookie':'aps03=tzi=27&oty=2&bst=1&hd=Y&lng=10&cf=E&ct=42&cst=132&v=1&cg=0&ltwo=False; rmbs=3; usdi=uqid=BC192014%2D5EE0%2D47AF%2D8404%2D5C3EE5C0B53B',
                 }
-    sp = BiFenSprider(urlPath,DBFILEPATH,tableName)
+    sp = BiFenSprider(urlPath,globals.DBFILEPATH,tableName)
     sp.setHeader(headers)
     sp.parseContentByUrl()
-    sp.updateMatchInfo()
+    #sp.updateMatchInfo()
 
-def testZhiBoDetails():
-    global DBFILEPATH
-    urlPath = "http://www.zhibo8.cc/zhibo/zuqiu/2014/0806saisaluonijivssading.htm"
-    tableName = 'football_liveMatchInfo'
-    sp = ZhiBoSprider(urlPath,DBFILEPATH,tableName)
-    titleName,matchDetails = sp.parseMatchDetailsByContent(urlPath)
-    print titleName
-    print matchDetails
-    return titleName,matchDetails
-
+def parseZhiBoByContent():
+    urlPath = 'http://www.zhibo8.cc'
+    tableName = 'football_livematchzhibo'
+    headers  = {}
+    sp = ZhiBoSprider(urlPath,globals.DBFILEPATH,tableName)
+    sp.setHeader(headers)
+    #sp.parseZhiBoMatch()
+    sp.updateMatchZhiBoInfo()
 
 
 if __name__ == '__main__':
-    parseZhiBoByContent()
-
-
+    pass
+    #parseBifenByContent()
+    #parseZhiBoByContent()
