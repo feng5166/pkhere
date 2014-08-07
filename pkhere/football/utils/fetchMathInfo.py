@@ -239,7 +239,7 @@ class ZhiBoSprider(Sprider):
         print 'parseZhiBoMatch1------'
         self.realZhiBoInfo(boxResult[2])
         print 'parseZhiBoMatch2------'
-        self.realZhiBoInfo(boxResult[3])
+        #self.realZhiBoInfo(boxResult[3])
         print 'parseZhiBoMatch3------'
 
     def realZhiBoInfo(self,boxResult):
@@ -251,8 +251,8 @@ class ZhiBoSprider(Sprider):
             matchName = u''
             for name in contents:
                 self.match_zhibo[self.index] = {}
-                #print 'realZhiBoInfo:',name,contents
-                if name.name=='a':
+                print 'realZhiBoInfo:',name.name,name,contents
+                if name.name==u'a':
                     if name['href'].find('http') ==-1:
                         zhiboName = name.get_text()
                         zhiboLink = "http://www.zhibo8.cc" + name['href']
