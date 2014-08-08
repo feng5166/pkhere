@@ -239,7 +239,7 @@ class ZhiBoSprider(Sprider):
         print 'parseZhiBoMatch1------'
         self.realZhiBoInfo(boxResult[2])
         print 'parseZhiBoMatch2------'
-        #self.realZhiBoInfo(boxResult[3])
+        self.realZhiBoInfo(boxResult[3])
         print 'parseZhiBoMatch3------'
 
     def realZhiBoInfo(self,boxResult):
