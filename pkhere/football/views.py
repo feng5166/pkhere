@@ -10,9 +10,8 @@ def index(response):
     return render_to_response('football/template/index.html')
 
 def score(response):
-    liveMatchs = liveMatchInfo.objects.all()
+    liveMatchs = liveMatchInfo.objects.order_by('-matchMinute')
     matchCnt = len(liveMatchs)
-    print '---------------',liveMatchs[0].homeTeam
     return render_to_response('football/template/bf.html',
                               {'liveMatchs': liveMatchs,
                                'matchCnt':  matchCnt,

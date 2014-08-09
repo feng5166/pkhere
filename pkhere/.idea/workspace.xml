@@ -15,7 +15,7 @@
     <SUITE FILE_PATH="coverage/pkhere$fetchZhiBo__1_.coverage" NAME="fetchZhiBo (1) Coverage Results" MODIFIED="1407550449798" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/utils" />
     <SUITE FILE_PATH="coverage/pkhere$settings.coverage" NAME="settings Coverage Results" MODIFIED="1406308864043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pkhere" />
     <SUITE FILE_PATH="coverage/pkhere$sqliteHelper.coverage" NAME="sqliteHelper Coverage Results" MODIFIED="1406447242513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/utils" />
-    <SUITE FILE_PATH="coverage/pkhere$fetchBiFen.coverage" NAME="fetchBiFen Coverage Results" MODIFIED="1407585565248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/utils" />
+    <SUITE FILE_PATH="coverage/pkhere$fetchBiFen.coverage" NAME="fetchBiFen Coverage Results" MODIFIED="1407598172772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/utils" />
     <SUITE FILE_PATH="coverage/pkhere$views.coverage" NAME="views Coverage Results" MODIFIED="1406452000807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football" />
     <SUITE FILE_PATH="coverage/pkhere$sprider.coverage" NAME="sprider Coverage Results" MODIFIED="1405242751493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/helpers" />
     <SUITE FILE_PATH="coverage/pkhere$sprider__1_.coverage" NAME="sprider (1) Coverage Results" MODIFIED="1406739945133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/utils" />
@@ -48,8 +48,8 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/football/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="705">
-              <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
+              <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
               <folding>
                 <element signature="e#23#59#0" expanded="true" />
               </folding>
@@ -57,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pkhere/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73085845" vertical-offset="0" max-vertical-offset="1470">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
+              <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -71,17 +71,17 @@
         <entry file="file://$PROJECT_DIR$/football/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+              <caret line="9" column="11" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fetchMathInfo.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="fetchMathInfo.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/football/utils/fetchMathInfo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="39.153847" vertical-offset="3883" max-vertical-offset="5100">
-              <caret line="191" column="28" selection-start-line="191" selection-start-column="28" selection-end-line="191" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.4815341" vertical-offset="2991" max-vertical-offset="5100">
+              <caret line="222" column="51" selection-start-line="222" selection-start-column="51" selection-end-line="222" selection-end-column="51" />
               <folding>
                 <element signature="e#23#37#0" expanded="true" />
                 <marker date="1407585514000" expanded="true" signature="9523:9557" placeholder="DELETE FROM ..." />
@@ -98,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/football/utils/fetchBiFen.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
-              <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+              <caret line="19" column="20" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="22" />
               <folding>
                 <element signature="e#23#43#0" expanded="true" />
               </folding>
@@ -109,11 +109,11 @@
       <file leaf-file-name="bf.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/football/template/bf.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.041667" vertical-offset="1307" max-vertical-offset="2205">
-              <caret line="108" column="45" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
+            <state vertical-scroll-proportion="-13.666667" vertical-offset="1367" max-vertical-offset="2190">
+              <caret line="113" column="53" selection-start-line="113" selection-start-column="53" selection-end-line="113" selection-end-column="53" />
               <folding>
-                <marker date="1407585185000" expanded="false" signature="3541:3574" placeholder="..." />
-                <marker date="1407585185000" expanded="false" signature="3790:3823" placeholder="..." />
+                <marker date="1407598807000" expanded="false" signature="3541:3574" placeholder="..." />
+                <marker date="1407598807000" expanded="false" signature="3946:3979" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -151,12 +151,12 @@
         <option value="$PROJECT_DIR$/football/utils/globals.py" />
         <option value="$PROJECT_DIR$/football/utils/fetchZhiBo.py" />
         <option value="$PROJECT_DIR$/football/utils/fetchBiFen.py" />
-        <option value="$PROJECT_DIR$/football/views.py" />
         <option value="$PROJECT_DIR$/pkhere/urls.py" />
         <option value="$PROJECT_DIR$/football/models.py" />
-        <option value="$PROJECT_DIR$/football/template/bf.html" />
         <option value="$PROJECT_DIR$/football/utils/fetchMathInfo.py" />
         <option value="$PROJECT_DIR$/pkhere/settings.py" />
+        <option value="$PROJECT_DIR$/football/views.py" />
+        <option value="$PROJECT_DIR$/football/template/bf.html" />
       </list>
     </option>
   </component>
@@ -673,7 +673,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4251269" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41751269" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.021573603" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -997,10 +997,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/football/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+          <caret line="9" column="11" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkhere/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
+          <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/football/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="705">
-          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="690">
+          <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
           <folding>
             <element signature="e#23#59#0" expanded="true" />
           </folding>
@@ -1009,11 +1025,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/football/template/bf.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.041667" vertical-offset="1307" max-vertical-offset="2205">
-          <caret line="108" column="45" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
+        <state vertical-scroll-proportion="-13.666667" vertical-offset="1367" max-vertical-offset="2190">
+          <caret line="113" column="53" selection-start-line="113" selection-start-column="53" selection-end-line="113" selection-end-column="53" />
           <folding>
-            <marker date="1407585185000" expanded="false" signature="3541:3574" placeholder="..." />
-            <marker date="1407585185000" expanded="false" signature="3790:3823" placeholder="..." />
+            <marker date="1407598807000" expanded="false" signature="3541:3574" placeholder="..." />
+            <marker date="1407598807000" expanded="false" signature="3946:3979" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1021,7 +1037,7 @@
     <entry file="file://$PROJECT_DIR$/football/utils/fetchBiFen.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
-          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <caret line="19" column="20" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="22" />
           <folding>
             <element signature="e#23#43#0" expanded="true" />
           </folding>
@@ -1030,8 +1046,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/football/utils/fetchMathInfo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="39.153847" vertical-offset="3883" max-vertical-offset="5100">
-          <caret line="191" column="28" selection-start-line="191" selection-start-column="28" selection-end-line="191" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.4815341" vertical-offset="2991" max-vertical-offset="5100">
+          <caret line="222" column="51" selection-start-line="222" selection-start-column="51" selection-end-line="222" selection-end-column="51" />
           <folding>
             <element signature="e#23#37#0" expanded="true" />
             <marker date="1407585514000" expanded="true" signature="9523:9557" placeholder="DELETE FROM ..." />
@@ -1040,22 +1056,6 @@
             <marker date="1407585514000" expanded="true" signature="13445:13501" placeholder="INSERT INTO ..." />
             <marker date="1407585514000" expanded="true" signature="13851:13888" placeholder="SELECT * FRO..football_livematchzhibo..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/football/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pkhere/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73085845" vertical-offset="0" max-vertical-offset="1470">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
