@@ -2,6 +2,7 @@
 from django.db import models
 from django.conf import settings
 class liveMatchInfo(models.Model):
+    id = models.IntegerField(primary_key=True)
     homeTeam = models.CharField(max_length=50)
     awayTeam = models.CharField(max_length=50)
     matchType = models.CharField(max_length=50)
@@ -13,7 +14,6 @@ class liveMatchInfo(models.Model):
     awayGoal = models.IntegerField()
     homeCorner = models.IntegerField()
     awayCorner = models.IntegerField()
-    awayGoal = models.IntegerField()
     initBigBall = models.CharField(max_length=30)
     initCorner = models.CharField(max_length=30)
     initYaPeiBet = models.CharField(max_length=30)

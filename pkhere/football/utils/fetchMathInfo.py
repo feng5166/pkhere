@@ -2,6 +2,7 @@
 import urllib2
 import cookielib
 import time
+import re
 from bs4 import BeautifulSoup
 from datetime import date
 
@@ -126,7 +127,6 @@ class BiFenSprider(Sprider):
             self.match_info[index]['initBigBall'] = u'停盘'
             self.match_info[index]['initCorner'] = u'停盘'
             self.match_info[index]['initYaPeiBet'] = u'停盘'
-            self.match_info[index]['initYaPeiBet'] = u'停盘'
             self.match_info[index]['currentBigBall'] = u'停盘'
             self.match_info[index]['currentCorner'] = u'停盘'
             self.match_info[index]['currentYaPeiBet'] = u'停盘'
@@ -159,66 +159,77 @@ class BiFenSprider(Sprider):
                 continue
             urlPath = "http://www.28365365.com/Lite/cache/api/?clt=9994&op=14&rw=in-play/&cid=9998&cpid="+urlPath +"&wg=False&cf=E&lng=10&cty=42&fm=1&tzi=27&oty=2&hd=Y&mlive=0"
             print 'urlPath:',urlPath
+            #urlPath = "http://www.28365365.com/Lite/cache/api/?clt=9994&op=14&rw=in-play/&cid=9998&cpid=1-1-5-26381267-2-0-0-1-1-0-0-0-0-0-1-0-0-0-0-0-0&wg=False&cf=E&lng=10&cty=42&fm=1&tzi=27&oty=2&hd=Y&mlive=0"
+            #print 'urlPath:',urlPath
             self.setUrlPath(urlPath)
             content = self.getContentByUrl()
-            print content
+            #print content
             soup = BeautifulSoup(content)
             content = soup.prettify()
-            soup = BeautifulSoup(content)
-
-            homeTeamBet = soup.find('td',attrs={'class':'c1 bl ti',} )
-            print 'homeTeamBet',homeTeamBet
-            if homeTeamBet:
-                homeTeamBet= homeTeamBet.text.replace('\n','').strip()
-            else:
-                homeTeamBet = u'停盘   '
-            homeTeamBet = homeTeamBet.split(' ')
-            awayTeamBet = soup.find('td',attrs={'class':'c2 bl ti',} )
-            if awayTeamBet:
-                awayTeamBet= awayTeamBet.text.replace('\n','').strip()
-            else:
-                awayTeamBet = u'停盘   '
-            awayTeamBet = awayTeamBet.split(' ')
-            print homeTeamBet[0],homeTeamBet[1],homeTeamBet[-1]
-            print awayTeamBet[0],awayTeamBet[1],awayTeamBet[-1]
-            betsInfo = soup.findAll('div',attrs={'class':'cpnseccnt',} )
-            #print betsInfo
-            for betInfo in betsInfo:
-                betInfo =  betInfo.text.replace('\n','').strip()
-                if betInfo.find(u'亚洲让分盘')!=-1:
-                    rangfenBet = betInfo.split(' ')
-                elif betInfo.find(u'大小盘')!=-1:
-                    daxiaoBet = betInfo.split(' ')
-            print rangfenBet
-            print daxiaoBet
+            matchInfos = soup.findAll('div',attrs={'class':'cpnseccnt',},limit=2)
+            findRangfenBet = False
+            findBallBetBet = False
+            for matchInfo in matchInfos:
+                if matchInfo:
+                    if matchInfo.contents[1].find('h3',attrs={'title':re.compile(u"亚洲让分盘")},):
+                        if matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2):
+                            homeKeylink = matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2)[0]['id']
+                            awayKeylink = matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2)[1]['id']
+                            homeBet,rangqiu = self.getBetByPath(homeKeylink)
+                            awayBet,_ = self.getBetByPath(awayKeylink)
+                            currentYaPeiBet = str(homeBet) + ' ' + str(rangqiu) + ' ' + str(awayBet)
+                            self.match_info[index]['currentYaPeiBet'] = currentYaPeiBet
+                            findRangfenBet = True
+                    elif matchInfo.contents[1].find('h3',attrs={'title':re.compile(u"大小盘")},):
+                        if matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2):
+                            homeKeylink = matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2)[0]['id']
+                            awayKeylink = matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2)[1]['id']
+                            homeBet,rangqiu = self.getBetByPath(homeKeylink)
+                            awayBet,_ = self.getBetByPath(awayKeylink)
+                            currentBallBet = str(homeBet) + ' ' + str(rangqiu) + ' ' + str(awayBet)
+                            self.match_info[index]['currentBigBall'] = currentBallBet
+                            findBallBetBet = True
+                            print currentBallBet
+            if not findRangfenBet:
+                self.match_info[index]['currentYaPeiBet'] = u'停盘'
+            if not findBallBetBet:
+                self.match_info[index]['currentBigBall'] = u'停盘'
             corners = soup.findAll('td',attrs={'class':'cst',} )
-            #for corner in corners:
-            print corners[0].text.strip(),corners[5].text.strip()
+            self.match_info[index]['homeCorner'] =  corners[0].text.strip()
+            self.match_info[index]['awayCorner'] = corners[5].text.strip()
+            #break
+
+    def getBetByPath(self,keyLink):
+        print keyLink
+        keyLink = keyLink.split('#')
+        odd = keyLink[1].split('=')
+        odd = odd[1].split('/')
+        odd = float(odd[0])/float(odd[1])+1.0
+        rangqiu = keyLink[5]
+        rangqiu = rangqiu.split('=')
+        rangqiu = float(rangqiu[1])
+        return odd,rangqiu
 
     def updateMatchInfo(self):
-        fetchall_sql = '''SELECT * FROM football_liveMatchInfo'''
-        find = False
-        try:
-            self.sqlliteHelper.fetchall(fetchall_sql)
-            find = True
-        except:
-            find = False
-        print find
-        if find:
-            save_sql = '''INSERT INTO football_liveMatchInfo values (?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
-            data = []
-            for index in self.match_info:
-                info = (self.match_info[index]['homeTeam'],self.match_info[index]['awayTeam'],self.match_info[index]['matchType'],\
-                        self.match_info[index]['matchDate'],self.match_info[index]['matchMinute'],self.match_info[index]['initOupeiBet'],\
-                        self.match_info[index]['currentOupeiBet'],self.match_info[index]['homeGoal'],self.match_info[index]['awayGoal'],\
-                        self.match_info[index]['homeCorner'],self.match_info[index]['awayCorner'],self.match_info[index]['initBigBall'],\
-                        self.match_info[index]['initCorner'],self.match_info[index]['initYaPeiBet'],self.match_info[index]['currentBigBall'], \
-                        self.match_info[index]['currentCorner'],self.match_info[index]['currentYaPeiBet'],self.match_info[index]['linkPath'],\
-                        self.match_info[index]['isOver'],\
-                        )
-                data.append(info)
-            self.sqlliteHelper.save(save_sql,data)
-            #self.sqlliteHelper.fetchall(fetchall_sql)
+        #self.sqlliteHelper.drop_table('football_liveMatchInfo')
+        #return
+        delete_sql = ''' DELETE FROM football_liveMatchInfo '''
+        self.sqlliteHelper.delete(delete_sql,None)
+        save_sql = '''INSERT INTO football_liveMatchInfo values (?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
+        data = []
+        for index in self.match_info:
+            info = (index,self.match_info[index]['homeTeam'],self.match_info[index]['awayTeam'],self.match_info[index]['matchType'],\
+                    self.match_info[index]['matchDate'],self.match_info[index]['matchMinute'],self.match_info[index]['initOupeiBet'],\
+                    self.match_info[index]['currentOupeiBet'],self.match_info[index]['homeGoal'],self.match_info[index]['awayGoal'],\
+                    self.match_info[index]['homeCorner'],self.match_info[index]['awayCorner'],self.match_info[index]['initBigBall'],\
+                    self.match_info[index]['initCorner'],self.match_info[index]['initYaPeiBet'],self.match_info[index]['currentBigBall'], \
+                    self.match_info[index]['currentCorner'],self.match_info[index]['currentYaPeiBet'],self.match_info[index]['linkPath'],\
+                    self.match_info[index]['isOver'],\
+                    )
+            print info
+            data.append(info)
+        self.sqlliteHelper.save(save_sql,data)
+        #self.sqlliteHelper.fetchall(fetchall_sql)
 
 
 class ZhiBoSprider(Sprider):
@@ -316,30 +327,6 @@ class ZhiBoSprider(Sprider):
 
 detailPath ='http://www.28365365.com/Lite/cache/api/?clt=9994&op=14&rw=in-play/&cid=9998&cpid=1-1-5-26350354-2-0-0-1-1-0-0-0-0-0-1-0-0-0-0-0-0&wg=False&cf=E&lng=10&cty=42&fm=1&tzi=27&oty=2&hd=Y&mlive=0'
 
-def parseBifenByContent():
-    urlPath = 'http://www.28365365.com/Lite/cache/api/?&rw=in-play/overview&lng=10'
-    tableName = 'football_liveMatchInfo'
-    headers  = {
-                'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-                'Accept-Language':'zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3',
-                'Host': 'www.28365365.com',
-                'Content-Type':'text/html; charset=utf-8',
-                'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:30.0) Gecko/20100101 Firefox/30.0',
-                'Cookie':'aps03=tzi=27&oty=2&bst=1&hd=Y&lng=10&cf=E&ct=42&cst=132&v=1&cg=0&ltwo=False; rmbs=3; usdi=uqid=BC192014%2D5EE0%2D47AF%2D8404%2D5C3EE5C0B53B',
-                }
-    sp = BiFenSprider(urlPath,globals.DBFILEPATH,tableName)
-    sp.setHeader(headers)
-    sp.parseContentByUrl()
-    #sp.updateMatchInfo()
-
-def parseZhiBoByContent():
-    urlPath = 'http://www.zhibo8.cc'
-    tableName = 'football_livematchzhibo'
-    headers  = {}
-    sp = ZhiBoSprider(urlPath,globals.DBFILEPATH,tableName)
-    sp.setHeader(headers)
-    #sp.parseZhiBoMatch()
-    sp.updateMatchZhiBoInfo()
 
 
 if __name__ == '__main__':

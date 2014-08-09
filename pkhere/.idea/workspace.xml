@@ -12,14 +12,15 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/pkhere$fetchZhiBo__1_.coverage" NAME="fetchZhiBo (1) Coverage Results" MODIFIED="1407517049088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/utils" />
+    <SUITE FILE_PATH="coverage/pkhere$fetchZhiBo__1_.coverage" NAME="fetchZhiBo (1) Coverage Results" MODIFIED="1407550449798" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/utils" />
     <SUITE FILE_PATH="coverage/pkhere$settings.coverage" NAME="settings Coverage Results" MODIFIED="1406308864043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pkhere" />
     <SUITE FILE_PATH="coverage/pkhere$sqliteHelper.coverage" NAME="sqliteHelper Coverage Results" MODIFIED="1406447242513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/utils" />
+    <SUITE FILE_PATH="coverage/pkhere$fetchBiFen.coverage" NAME="fetchBiFen Coverage Results" MODIFIED="1407585565248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/utils" />
     <SUITE FILE_PATH="coverage/pkhere$views.coverage" NAME="views Coverage Results" MODIFIED="1406452000807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football" />
     <SUITE FILE_PATH="coverage/pkhere$sprider.coverage" NAME="sprider Coverage Results" MODIFIED="1405242751493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/helpers" />
     <SUITE FILE_PATH="coverage/pkhere$sprider__1_.coverage" NAME="sprider (1) Coverage Results" MODIFIED="1406739945133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/utils" />
     <SUITE FILE_PATH="coverage/pkhere$models.coverage" NAME="models Coverage Results" MODIFIED="1406309151716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football" />
-    <SUITE FILE_PATH="coverage/pkhere$fetchMathInfo.coverage" NAME="fetchMathInfo Coverage Results" MODIFIED="1407435153001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/utils" />
+    <SUITE FILE_PATH="coverage/pkhere$fetchMathInfo.coverage" NAME="fetchMathInfo Coverage Results" MODIFIED="1407583020539" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/utils" />
     <SUITE FILE_PATH="coverage/pkhere$fetchZhiBo.coverage" NAME="fetchZhiBo Coverage Results" MODIFIED="1407345469659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/football/tools" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -34,11 +35,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pkhere/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/football/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-              <caret line="35" column="38" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="705">
+              <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
               <folding>
                 <element signature="e#23#59#0" expanded="true" />
               </folding>
@@ -46,85 +57,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pkhere/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.73085845" vertical-offset="0" max-vertical-offset="1470">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/football/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="585">
-              <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
-              <folding>
-                <element signature="e#23#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/football/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="globals.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/football/utils/globals.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
-              <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fetchZhiBo.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/football/utils/fetchZhiBo.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45560747" vertical-offset="0" max-vertical-offset="428">
-              <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
-              <folding>
-                <element signature="e#23#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sqliteHelper.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/football/utils/sqliteHelper.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1589" max-vertical-offset="3120">
-              <caret line="97" column="34" selection-start-line="97" selection-start-column="34" selection-end-line="97" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/football/utils/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
-              <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/football/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
-              <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="zbDetails.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/football/template/zbDetails.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.9583335" vertical-offset="781" max-vertical-offset="1545">
-              <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -133,15 +80,40 @@
       <file leaf-file-name="fetchMathInfo.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/football/utils/fetchMathInfo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.961538" vertical-offset="3330" max-vertical-offset="5295">
-              <caret line="241" column="8" selection-start-line="241" selection-start-column="8" selection-end-line="241" selection-end-column="8" />
+            <state vertical-scroll-proportion="39.153847" vertical-offset="3883" max-vertical-offset="5100">
+              <caret line="191" column="28" selection-start-line="191" selection-start-column="28" selection-end-line="191" selection-end-column="28" />
               <folding>
                 <element signature="e#23#37#0" expanded="true" />
-                <marker date="1407517044000" expanded="true" signature="7912:7948" placeholder="SELECT * FRO..football_liveMatchInfo..." />
-                <marker date="1407517044000" expanded="true" signature="8167:8253" placeholder="INSERT INTO ..." />
-                <marker date="1407517044000" expanded="true" signature="11886:11921" placeholder="DELETE FROM ..." />
-                <marker date="1407517044000" expanded="true" signature="11999:12055" placeholder="INSERT INTO ..." />
-                <marker date="1407517044000" expanded="true" signature="12405:12442" placeholder="SELECT * FRO..football_livematchzhibo..." />
+                <marker date="1407585514000" expanded="true" signature="9523:9557" placeholder="DELETE FROM ..." />
+                <marker date="1407585514000" expanded="true" signature="9635:9722" placeholder="INSERT INTO ..." />
+                <marker date="1407585514000" expanded="true" signature="13332:13367" placeholder="DELETE FROM ..." />
+                <marker date="1407585514000" expanded="true" signature="13445:13501" placeholder="INSERT INTO ..." />
+                <marker date="1407585514000" expanded="true" signature="13851:13888" placeholder="SELECT * FRO..football_livematchzhibo..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fetchBiFen.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/football/utils/fetchBiFen.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+              <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+              <folding>
+                <element signature="e#23#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bf.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/football/template/bf.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.041667" vertical-offset="1307" max-vertical-offset="2205">
+              <caret line="108" column="45" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
+              <folding>
+                <marker date="1407585185000" expanded="false" signature="3541:3574" placeholder="..." />
+                <marker date="1407585185000" expanded="false" signature="3790:3823" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -167,23 +139,24 @@
         <option value="$PROJECT_DIR$/football/utils/sprider.py.bak" />
         <option value="$PROJECT_DIR$/football/template/test.html" />
         <option value="$PROJECT_DIR$/football/template/liveMatch.html" />
-        <option value="$PROJECT_DIR$/pkhere/settings.py" />
         <option value="$PROJECT_DIR$/football/utils/sqliteHelper.py" />
-        <option value="$PROJECT_DIR$/football/template/bf.html" />
         <option value="$PROJECT_DIR$/football/template/index.html" />
         <option value="$PROJECT_DIR$/football/template/zb.html" />
-        <option value="$PROJECT_DIR$/pkhere/urls.py" />
         <option value="$PROJECT_DIR$/football/utils/sprider.py" />
-        <option value="$PROJECT_DIR$/football/models.py" />
         <option value="$PROJECT_DIR$/football/tools/toolsglobal.py" />
         <option value="$PROJECT_DIR$/football/tools/__init__.py" />
         <option value="$PROJECT_DIR$/football/tools/fetchZhiBo.py" />
         <option value="$PROJECT_DIR$/football/utils/__init__.py" />
         <option value="$PROJECT_DIR$/football/template/zbDetails.html" />
-        <option value="$PROJECT_DIR$/football/views.py" />
         <option value="$PROJECT_DIR$/football/utils/globals.py" />
-        <option value="$PROJECT_DIR$/football/utils/fetchMathInfo.py" />
         <option value="$PROJECT_DIR$/football/utils/fetchZhiBo.py" />
+        <option value="$PROJECT_DIR$/football/utils/fetchBiFen.py" />
+        <option value="$PROJECT_DIR$/football/views.py" />
+        <option value="$PROJECT_DIR$/pkhere/urls.py" />
+        <option value="$PROJECT_DIR$/football/models.py" />
+        <option value="$PROJECT_DIR$/football/template/bf.html" />
+        <option value="$PROJECT_DIR$/football/utils/fetchMathInfo.py" />
+        <option value="$PROJECT_DIR$/pkhere/settings.py" />
       </list>
     </option>
   </component>
@@ -237,6 +210,52 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pkhere" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pkhere" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pkhere" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pkhere" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pkhere" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="football" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pkhere" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pkhere" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="football" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -252,26 +271,7 @@
       <console-settings />
     </option>
   </component>
-  <component name="RunManager" selected="Python.fetchZhiBo (1)">
-    <configuration default="false" name="models" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/football" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="pkhere" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/football/models.py" />
-      <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.fetchBiFen">
     <configuration default="false" name="sqliteHelper" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -343,6 +343,25 @@
       <module name="pkhere" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/football/utils/fetchZhiBo.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="fetchBiFen" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/football/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pkhere" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/football/utils/fetchBiFen.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -593,19 +612,19 @@
       <item index="0" class="java.lang.String" itemvalue="Python.fetchMathInfo" />
       <item index="1" class="java.lang.String" itemvalue="Python.sprider (1)" />
       <item index="2" class="java.lang.String" itemvalue="Django server.pkhere" />
-      <item index="3" class="java.lang.String" itemvalue="Python.models" />
-      <item index="4" class="java.lang.String" itemvalue="Python.sqliteHelper" />
-      <item index="5" class="java.lang.String" itemvalue="Python.views" />
-      <item index="6" class="java.lang.String" itemvalue="Python.fetchZhiBo" />
-      <item index="7" class="java.lang.String" itemvalue="Python.fetchZhiBo (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Python.sqliteHelper" />
+      <item index="4" class="java.lang.String" itemvalue="Python.views" />
+      <item index="5" class="java.lang.String" itemvalue="Python.fetchZhiBo" />
+      <item index="6" class="java.lang.String" itemvalue="Python.fetchZhiBo (1)" />
+      <item index="7" class="java.lang.String" itemvalue="Python.fetchBiFen" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.fetchZhiBo (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Python.fetchZhiBo" />
-        <item index="2" class="java.lang.String" itemvalue="Python.views" />
-        <item index="3" class="java.lang.String" itemvalue="Python.sqliteHelper" />
-        <item index="4" class="java.lang.String" itemvalue="Python.models" />
+        <item index="0" class="java.lang.String" itemvalue="Python.fetchBiFen" />
+        <item index="1" class="java.lang.String" itemvalue="Python.fetchZhiBo (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.fetchZhiBo" />
+        <item index="3" class="java.lang.String" itemvalue="Python.views" />
+        <item index="4" class="java.lang.String" itemvalue="Python.sqliteHelper" />
       </list>
     </recent_temporary>
   </component>
@@ -646,16 +665,16 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20304568" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20304568" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994923" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16654275" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20594795" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4251269" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39213198" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41751269" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -690,30 +709,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/football/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
-          <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/football/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
-          <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/football/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="405">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding>
-            <element signature="e#23#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/football/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
@@ -869,6 +864,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5767442" vertical-offset="7867" max-vertical-offset="12765">
           <caret line="541" column="40" selection-start-line="541" selection-start-column="40" selection-end-line="541" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -921,50 +917,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pkhere/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="325" max-vertical-offset="1470">
-          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/football/template/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="243" max-vertical-offset="2355">
           <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/football/template/zb.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="906" max-vertical-offset="1620">
-          <caret line="4" column="26" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/football/template/bf.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1205" max-vertical-offset="1980">
-          <caret line="102" column="32" selection-start-line="102" selection-start-column="20" selection-end-line="102" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pkhere/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-          <caret line="10" column="23" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/football/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -977,6 +933,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/football/template/zbDetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2975" vertical-offset="781" max-vertical-offset="1545">
+          <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/football/utils/sqliteHelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.74049217" vertical-offset="1109" max-vertical-offset="3120">
+          <caret line="97" column="34" selection-start-line="97" selection-start-column="34" selection-end-line="97" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/football/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/football/utils/fetchZhiBo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/football/utils/globals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.059210528" vertical-offset="0" max-vertical-offset="760">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/football/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
@@ -985,72 +981,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/football/template/zbDetails.html">
+    <entry file="file://$PROJECT_DIR$/football/template/zb.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.9583335" vertical-offset="781" max-vertical-offset="1545">
-          <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.9054622" vertical-offset="664" max-vertical-offset="1620">
+          <caret line="73" column="42" selection-start-line="73" selection-start-column="42" selection-end-line="73" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/football/utils/sqliteHelper.py">
+    <entry file="file://$PROJECT_DIR$/pkhere/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1589" max-vertical-offset="3120">
-          <caret line="97" column="34" selection-start-line="97" selection-start-column="34" selection-end-line="97" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/football/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="585">
-          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
-          <folding>
-            <element signature="e#23#51#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/football/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-          <caret line="35" column="38" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="705">
+          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
           <folding>
             <element signature="e#23#59#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/football/utils/globals.py">
+    <entry file="file://$PROJECT_DIR$/football/template/bf.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
-          <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
-          <folding />
+        <state vertical-scroll-proportion="-13.041667" vertical-offset="1307" max-vertical-offset="2205">
+          <caret line="108" column="45" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
+          <folding>
+            <marker date="1407585185000" expanded="false" signature="3541:3574" placeholder="..." />
+            <marker date="1407585185000" expanded="false" signature="3790:3823" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/football/utils/fetchBiFen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <folding>
+            <element signature="e#23#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/football/utils/fetchMathInfo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.961538" vertical-offset="3330" max-vertical-offset="5295">
-          <caret line="241" column="8" selection-start-line="241" selection-start-column="8" selection-end-line="241" selection-end-column="8" />
+        <state vertical-scroll-proportion="39.153847" vertical-offset="3883" max-vertical-offset="5100">
+          <caret line="191" column="28" selection-start-line="191" selection-start-column="28" selection-end-line="191" selection-end-column="28" />
           <folding>
             <element signature="e#23#37#0" expanded="true" />
-            <marker date="1407517044000" expanded="true" signature="7912:7948" placeholder="SELECT * FRO..football_liveMatchInfo..." />
-            <marker date="1407517044000" expanded="true" signature="8167:8253" placeholder="INSERT INTO ..." />
-            <marker date="1407517044000" expanded="true" signature="11886:11921" placeholder="DELETE FROM ..." />
-            <marker date="1407517044000" expanded="true" signature="11999:12055" placeholder="INSERT INTO ..." />
-            <marker date="1407517044000" expanded="true" signature="12405:12442" placeholder="SELECT * FRO..football_livematchzhibo..." />
+            <marker date="1407585514000" expanded="true" signature="9523:9557" placeholder="DELETE FROM ..." />
+            <marker date="1407585514000" expanded="true" signature="9635:9722" placeholder="INSERT INTO ..." />
+            <marker date="1407585514000" expanded="true" signature="13332:13367" placeholder="DELETE FROM ..." />
+            <marker date="1407585514000" expanded="true" signature="13445:13501" placeholder="INSERT INTO ..." />
+            <marker date="1407585514000" expanded="true" signature="13851:13888" placeholder="SELECT * FRO..football_livematchzhibo..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/football/utils/fetchZhiBo.py">
+    <entry file="file://$PROJECT_DIR$/football/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45560747" vertical-offset="0" max-vertical-offset="428">
-          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
-          <folding>
-            <element signature="e#23#43#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkhere/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73085845" vertical-offset="0" max-vertical-offset="1470">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

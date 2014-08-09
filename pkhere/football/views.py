@@ -2,6 +2,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from football.models import liveMatchZhiBo
+from football.models import liveMatchInfo
 
 
 # Create your views here.
@@ -9,13 +10,11 @@ def index(response):
     return render_to_response('football/template/index.html')
 
 def score(response):
-    sp = sprider.Sprider()
-    urlPath = 'http://www.28365365.com/Lite/cache/api/?&rw=in-play/overview&lng=10'
-    sp.parseContentByUrl(urlPath)
-    matchInfo = sprider.MATCH_INFO
-    matchCnt = len(matchInfo)
+    liveMatchs = liveMatchInfo.objects.all()
+    matchCnt = len(liveMatchs)
+    print '---------------',liveMatchs[0].homeTeam
     return render_to_response('football/template/bf.html',
-                              {'matchInfo': matchInfo,
+                              {'liveMatchs': liveMatchs,
                                'matchCnt':  matchCnt,
                               })
 

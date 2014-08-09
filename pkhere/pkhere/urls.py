@@ -10,3 +10,5 @@ urlpatterns = patterns('football.views',
     url(r'^zhibo/$', 'zhibo'),
     url(r'^zhiboDetails/$', 'zhiboDetails'),
 )
+
+urlpatterns += patterns('',)

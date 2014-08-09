@@ -81,23 +81,38 @@
                     <tr class="info">
                     <th>赛事</th>
                     <th class="text-center"><img src="/static/images/icon_clock.png" style="vertical-align:middle;width:16px;" alt="时间" title="时间" /></th>
-                    <th>主队 v 客队 （实时欧赔）</th>
+                    <th>主队 v 客队 （大小球）</th>
+                    <th class="text-center">亚盘</th>
                     <th class="text-center"><img src="/static/images/icon_goal.png" style="vertical-align:middle;width:16px;" alt="进球" title="进球" /></th>
-
+                    <th class="text-center"><img src="/static/images/icon_corner.png" style="vertical-align:middle;width:16px;" alt="角球" title="角球" /></th>
+                    <th class="text-center">分析</th>
+                    <th class="text-center">竞猜</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for i,j in matchInfo.items%}
+                    {% for liveMatch in liveMatchs%}
                     <tr>
-                        <td><a href="#">{{ j.matchCategory }}</a></td>
-                        <td class="text-center"><font color='red'>{{ j.time1 }}’</font></td>
+                        <td><a href="#">{{ liveMatch.matchType }}</a></td>
+                        <td class="text-center"><font color='red'>{{ liveMatch.matchMinute }}’</font></td>
                         <td class="font12">
-                            {{ j.team1 }} v {{ j.team2 }}
-                            {{ j.oupei }}
+                            {{ liveMatch.homeTeam }} v {{ liveMatch.awayTeam }}
+                            ({{ liveMatch.currentBigBall }})
+                        </td>
+                        <td class="text-center">
+                                {{ liveMatch.currentYaPeiBet }}
                         </td>
                         <td class="text-center">
                             
-                                <font color="red">{{ j.score1 }} v {{ j.score2 }}</font>
+                                <font color="red">{{ liveMatch.homeGoal }} v {{ liveMatch.awayGoal }}</font>
+                        </td>
+                        <td class="text-center">
+                                {{ liveMatch.homeCorner }} v {{ liveMatch.awayCorner }}
+                        </td>
+                        <td class="text-center">
+                            <a href="#" target="_blank">预测</a>
+                        </td>
+                        <td class="text-center">
+                            <a href="#" target="_blank">竞猜</a>
                         </td>
                     </tr>
                     {% endfor %}
