@@ -1,4 +1,5 @@
 #-*- coding: UTF-8 -*-
+import os
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from football.models import liveMatchZhiBo
@@ -9,9 +10,19 @@ from football.models import liveMatchInfo
 def index(response):
     return render_to_response('football/template/index.html')
 
+OLDMATCHS =[]
+MATCHCNT = 0
+FILEPATH = './utils/fetch.lock'
 def score(response):
-    liveMatchs = liveMatchInfo.objects.order_by('-matchMinute')
-    matchCnt = len(liveMatchs)
+    global FILEPATH,OLDMATCHS,MATCHCNT
+    e = os.path.exists(FILEPATH)
+    if e:
+        print 'file is exist'
+        liveMatchs = OLDMATCHS
+        matchCnt = MATCHCNT
+    else:
+        liveMatchs = liveMatchInfo.objects.order_by('-matchMinute')
+        matchCnt = len(liveMatchs)
     return render_to_response('football/template/bf.html',
                               {'liveMatchs': liveMatchs,
                                'matchCnt':  matchCnt,

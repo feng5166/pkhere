@@ -8,6 +8,7 @@ from datetime import date
 
 import globals
 import sqliteHelper
+import threadHelper
 
 class Sprider(object):
     def __init__(self,dataBasePath,urlPath,sqlTable):
@@ -38,6 +39,7 @@ class Sprider(object):
         request = urllib2.Request(self.urlPath,headers=self.headers)
         #print request.get_full_url(),request.get_data()
         fails = 0
+        content = ""
         while True:
             print 'fails',fails
             if fails >= 3:
@@ -57,12 +59,24 @@ class BiFenSprider(Sprider):
         self.match_info = {}
         self.match_cnt = 0
         self.sqlliteHelper = sqliteHelper.SqliteHelper(dataBasePath)
+        self.threadHelper = None#threadHelper.ThreadPool(100)
         self.urlPath = urlPath
         self.sqlTable = sqlTable
+        self.fetchRunning = False
 
-    def parseContentByUrl(self):
+    def startFetchBifen(self):
+        print 'startFetchBifen',self.fetchRunning
+        if self.fetchRunning:
+            print 'fetchBifen is Running'
+            return
+        self.fetchRunning = True
         content = self.getContentByUrl()
+        if not content:
+            self.fetchRunning = False
+            return
         self.parseMatchInfoByContent(content)
+        self.updateMatchInfo()
+        self.fetchRunning = False
 
 
     def parseMatchInfoByContent(self,content):
@@ -145,59 +159,74 @@ class BiFenSprider(Sprider):
             i=i+offset+8
             print  str(index) + '   '+self.match_info[index]['matchType'] + "   "+ self.match_info[index]['matchMinute']+'   '+self.match_info[index]['currentOupeiBet'] +"     " + self.match_info[index]['homeTeam'] +"vs"+self.match_info[index]['awayTeam']
             index+=1
-        self.getMatchDetails()
-        return index
+        cnt = index
+        self.threadHelper = threadHelper.ThreadPool(cnt)
+        for index in xrange(0,cnt):
+            req = threadHelper.WorkRequest(self.getMatchDetails,args=[index,],kwds={},callback=None)
+            self.threadHelper.putRequest(req)
+        while True:
+            try:
+                time.sleep(0.5)
+                self.threadHelper.poll()
+            except threadHelper.NoResultsPending:
+                print "no pending results"
+                break
+        return cnt
+
+    def print_result(self):
+        print 'print_result'
+    def test_result(self,index):
+        print 'test_result'+ str(index)
 
     def isMatchCategory(self,match,matchCategory):
         return match in matchCategory
 
 
-    def getMatchDetails(self):
-        for index in self.match_info:
-            urlPath = self.match_info[index]['linkPath']
-            if urlPath == "":
-                continue
-            urlPath = "http://www.28365365.com/Lite/cache/api/?clt=9994&op=14&rw=in-play/&cid=9998&cpid="+urlPath +"&wg=False&cf=E&lng=10&cty=42&fm=1&tzi=27&oty=2&hd=Y&mlive=0"
-            print 'urlPath:',urlPath
-            #urlPath = "http://www.28365365.com/Lite/cache/api/?clt=9994&op=14&rw=in-play/&cid=9998&cpid=1-1-5-26381267-2-0-0-1-1-0-0-0-0-0-1-0-0-0-0-0-0&wg=False&cf=E&lng=10&cty=42&fm=1&tzi=27&oty=2&hd=Y&mlive=0"
-            #print 'urlPath:',urlPath
-            self.setUrlPath(urlPath)
-            content = self.getContentByUrl()
-            #print content
-            soup = BeautifulSoup(content)
-            content = soup.prettify()
-            matchInfos = soup.findAll('div',attrs={'class':'cpnseccnt',},limit=2)
-            findRangfenBet = False
-            findBallBetBet = False
-            for matchInfo in matchInfos:
-                if matchInfo:
-                    if matchInfo.contents[1].find('h3',attrs={'title':re.compile(u"亚洲让分盘")},):
-                        if matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2):
-                            homeKeylink = matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2)[0]['id']
-                            awayKeylink = matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2)[1]['id']
-                            homeBet,rangqiu = self.getBetByPath(homeKeylink)
-                            awayBet,_ = self.getBetByPath(awayKeylink)
-                            currentYaPeiBet = str(homeBet) + ' ' + str(rangqiu) + ' ' + str(awayBet)
-                            self.match_info[index]['currentYaPeiBet'] = currentYaPeiBet
-                            findRangfenBet = True
-                    elif matchInfo.contents[1].find('h3',attrs={'title':re.compile(u"大小盘")},):
-                        if matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2):
-                            homeKeylink = matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2)[0]['id']
-                            awayKeylink = matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2)[1]['id']
-                            homeBet,rangqiu = self.getBetByPath(homeKeylink)
-                            awayBet,_ = self.getBetByPath(awayKeylink)
-                            currentBallBet = str(homeBet) + ' ' + str(rangqiu) + ' ' + str(awayBet)
-                            self.match_info[index]['currentBigBall'] = currentBallBet
-                            findBallBetBet = True
-                            print currentBallBet
-            if not findRangfenBet:
-                self.match_info[index]['currentYaPeiBet'] = u'停盘'
-            if not findBallBetBet:
-                self.match_info[index]['currentBigBall'] = u'停盘'
-            corners = soup.findAll('td',attrs={'class':'cst',} )
-            self.match_info[index]['homeCorner'] =  corners[0].text.strip()
-            self.match_info[index]['awayCorner'] = corners[5].text.strip()
-            #break
+    def getMatchDetails(self,index):
+        urlPath = self.match_info[index]['linkPath']
+        if urlPath == "":
+            return
+        print 'getMatchDetails:',index
+        urlPath = "http://www.28365365.com/Lite/cache/api/?clt=9994&op=14&rw=in-play/&cid=9998&cpid="+urlPath +"&wg=False&cf=E&lng=10&cty=42&fm=1&tzi=27&oty=2&hd=Y&mlive=0"
+        #print 'urlPath:',urlPath
+        #urlPath = "http://www.28365365.com/Lite/cache/api/?clt=9994&op=14&rw=in-play/&cid=9998&cpid=1-1-5-26381267-2-0-0-1-1-0-0-0-0-0-1-0-0-0-0-0-0&wg=False&cf=E&lng=10&cty=42&fm=1&tzi=27&oty=2&hd=Y&mlive=0"
+        #print 'urlPath:',urlPath
+        self.setUrlPath(urlPath)
+        content = self.getContentByUrl()
+        #print content
+        soup = BeautifulSoup(content)
+        matchInfos = soup.findAll('div',attrs={'class':'cpnseccnt',},limit=2)
+        findRangfenBet = False
+        findBallBetBet = False
+        for matchInfo in matchInfos:
+            if matchInfo:
+                if matchInfo.contents[1].find('h3',attrs={'title':re.compile(u"亚洲让分盘")},):
+                    if matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2):
+                        homeKeylink = matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2)[0]['id']
+                        awayKeylink = matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2)[1]['id']
+                        homeBet,rangqiu = self.getBetByPath(homeKeylink)
+                        awayBet,_ = self.getBetByPath(awayKeylink)
+                        currentYaPeiBet = str(homeBet) + ' ' + str(rangqiu) + ' ' + str(awayBet)
+                        self.match_info[index]['currentYaPeiBet'] = currentYaPeiBet
+                        findRangfenBet = True
+                elif matchInfo.contents[1].find('h3',attrs={'title':re.compile(u"大小盘")},):
+                    if matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2):
+                        homeKeylink = matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2)[0]['id']
+                        awayKeylink = matchInfo.contents[3].findAll('a',attrs={'class':'btn-odds-lnk',},limit=2)[1]['id']
+                        homeBet,rangqiu = self.getBetByPath(homeKeylink)
+                        awayBet,_ = self.getBetByPath(awayKeylink)
+                        currentBallBet = str(homeBet) + ' ' + str(rangqiu) + ' ' + str(awayBet)
+                        self.match_info[index]['currentBigBall'] = currentBallBet
+                        findBallBetBet = True
+                        print currentBallBet
+        if not findRangfenBet:
+            self.match_info[index]['currentYaPeiBet'] = u'停盘'
+        if not findBallBetBet:
+            self.match_info[index]['currentBigBall'] = u'停盘'
+        corners = soup.findAll('td',attrs={'class':'cst',} )
+        self.match_info[index]['homeCorner'] =  corners[0].text.strip()
+        self.match_info[index]['awayCorner'] = corners[5].text.strip()
+        #break
 
     def getBetByPath(self,keyLink):
         print keyLink
