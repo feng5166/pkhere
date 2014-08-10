@@ -28,6 +28,7 @@ ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
     '',
+    'football/template',
 )
 DATABASE_ENGINE = 'sqlite3'
 DATABASE_NAME = '../db.sqlite3'

@@ -1,0 +1,21 @@
+syntax: glob
+
+.project
+.pydevproject
+.settings\*
+.settings/*
+*.pyc
+*~
+ChineBlog\blog\templates\blog\coolblue\*~
+ChineBlog\blog\static\uploads\*
+ChineBlog\blog\migrations\*
+ChineBlog\social\migrations\*
+ChineBlog\db\*
+ChineBlog\local_settings.py
+ChineBlog/blog/templates/blog/coolblue/*~
+ChineBlog/blog/static/uploads/*
+ChineBlog/blog/migrations/*
+ChineBlog/social/migrations/*
+ChineBlog/db/*
+ChineBlog/local_settings.py
+ChineBlog/static/*

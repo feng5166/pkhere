@@ -333,6 +333,8 @@ class ZhiBoSprider(Sprider):
         self.setUrlPath(urlPath)
         content = self.getContentByUrl()
         soup = BeautifulSoup(content)
+        content = soup.prettify()
+        soup = BeautifulSoup(content)
         #print soup
         titleName =  soup.find('div',attrs={'class':'title',} ).text
         results =  soup.find('div',attrs={'id':'signals',} )

@@ -1,0 +1,28 @@
+{% extends "blog/coolblue/base.html" %}
+
+{% block css %}
+	<link type="text/css" rel="stylesheet" href="/static/blog/coolblue/css/SyntaxHighlighter/shCoreEclipse.css"><link>
+{% endblock %}
+
+{% block js %}
+	<script language="JavaScript" src="/static/blog/coolblue/js/SyntaxHighlighter/shCore.js"></script> 
+	<script language="JavaScript" src="/static/blog/coolblue/js/SyntaxHighlighter/shAutoloader.js"></script>
+	<script language="JavaScript" src="/static/blog/coolblue/js/loadSyntaxHighlighter.js"></script>
+	<script language="JavaScript" src="/static/blog/coolblue/js/keyboardControl.js"></script>
+{% endblock %}
+
+{% block main %}
+	{% include "blog/coolblue/articles.html" %}
+{% endblock %}
+
+{% block footerjs %}
+<script type="text/javascript">
+  window.___gcfg = {lang: 'zh-CN'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+{% endblock %}
